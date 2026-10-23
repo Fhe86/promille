@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hefteintrag: Promille, Rechnen mit Tausendstel</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--ink:#1b2a41;--muted:#5a6a80;--line:#9fb3cf;--bg:#fbf8f1;--paper:#fff;--blau:#2f7fd6;--blau-dk:#1d4f9a;--blau-hell:#e3effc;--gelb:#f6c344;--korall:#f26b5b;--orange:#f0a30a;--gruen:#2e9e57}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Verdana,Arial,Helvetica,sans-serif;line-height:1.5;font-size:17px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+.sheet{max-width:210mm;margin:0 auto;padding:16px 12px 70px}
+.page{width:210mm;max-width:100%;margin:0 auto 22px;background:var(--paper);border-radius:14px;box-shadow:0 2px 12px rgba(27,42,65,.10);padding:9mm 13mm 8mm}
+.kopf{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.kopficon{flex:none;width:56px;height:56px;border-radius:16px;background:var(--blau-hell);border:2.5px solid var(--ink);display:grid;place-items:center;font-family:"Arial Black",Arial,sans-serif;font-size:27px;color:var(--blau-dk)}
+.kicker{font-size:12px;font-weight:bold;letter-spacing:.09em;text-transform:uppercase;color:var(--blau-dk)}
+h1{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:27px;line-height:1.1;margin:2px 0 0}
+.sol-flag{display:none;margin-left:10px;font-size:12px;letter-spacing:.06em;background:var(--blau);color:#fff;padding:2px 10px;border-radius:12px;vertical-align:middle;font-family:Verdana,Arial,sans-serif}
+body.sol .sol-flag{display:inline-block}
+.felder{display:flex;gap:20px;font-size:13px;color:var(--muted);margin:6px 0 10px}
+.felder span{display:inline-block;border-bottom:1.5px solid var(--ink);min-width:110px;margin-left:4px}
+.felder .fn{min-width:190px}
+.toolbar{position:sticky;top:0;z-index:10;background:rgba(251,248,241,.96);padding:8px 0 10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;max-width:210mm;margin:0 auto}
+.tbtn{min-height:50px;border-radius:14px;border:2px solid var(--blau-dk);background:var(--blau);color:#fff;font-weight:bold;font-size:16px;padding:8px 18px}
+.tbtn.alt{background:#fff;color:var(--blau-dk)}
+#ergebnis{font-weight:bold;font-size:16px}
+details.hilfe{max-width:210mm;margin:0 auto 8px;font-size:14px;color:var(--muted)}
+details.hilfe summary{cursor:pointer;min-height:36px;display:flex;align-items:center}
+details.hilfe a{color:var(--blau-dk);font-weight:bold}
+.aufgabe{border:2px solid var(--ink);border-radius:14px;padding:8px 14px 10px;margin:0 0 9px;break-inside:avoid;page-break-inside:avoid}
+.aufgabe h2{font-size:16px;margin:0 0 3px;display:flex;align-items:center;gap:8px}
+.aufgabe h2 b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--blau);color:#fff;font-size:14px;flex:none}
+.hinw{margin:0 0 5px;font-size:12.5px;color:var(--muted)}
+.bank{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#f3f8fe;border:2px dashed var(--blau);border-radius:12px;padding:6px 9px;margin:6px 0 4px}
+.bank>i{font-style:normal;font-size:11px;font-weight:bold;letter-spacing:.06em;text-transform:uppercase;color:var(--blau-dk);margin-right:4px}
+.wort{min-height:44px;padding:4px 13px;border-radius:999px;border:2px solid var(--ink);background:#fff;font-weight:bold;font-size:15px}
+.wort.sel{background:var(--gelb);border-color:#9a7405}
+.wort.used{opacity:.28;pointer-events:none}
+.luecke{display:inline-block;min-height:30px;padding:0 6px;margin:0 2px;vertical-align:baseline;border:0;border-bottom:2.5px solid var(--ink);background:#f3f8fe;color:var(--blau-dk);font:inherit;font-weight:bold;text-align:center;border-radius:6px 6px 0 0;line-height:1.3}
+.luecke.aktiv{background:#fff3c9;border-bottom-color:#9a7405}
+.luecke.ok{background:#d6f1de;border-bottom-color:#1e9e4d}
+.luecke.bad{background:#fbdcd8;border-bottom-color:#d83a3a}
+body.sol .luecke::before{content:attr(data-ans)}
+body.sol .toolbar,body.sol .bank,body.sol details.hilfe{display:none}
+.bild{display:block;width:100%;height:auto}
+.fig{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:14px;align-items:center;margin:2px 0 6px}
+.fig p{margin:0;font-size:13.5px;line-height:1.45}
+.merk{border:3px solid var(--ink);border-radius:12px;padding:7px 14px;background:#f6faff;margin:4px 0}
+.merk p{margin:0;line-height:2.05;font-size:15.5px}
+.vgl{width:100%;border-collapse:collapse;margin:6px 0 2px;font-size:14px}
+.vgl th,.vgl td{border:1.8px solid var(--ink);padding:3px 9px;text-align:left}
+.vgl th{background:var(--blau-hell)}
+.vgl td{line-height:1.9}
+table.zu{width:100%;border-collapse:collapse;font-size:14px;margin:4px 0}
+table.zu th,table.zu td{border:1.8px solid var(--ink);padding:2px 9px;text-align:left;line-height:1.8}
+table.zu th{background:var(--blau-hell)}
+table.zu td.k{font-weight:bold;white-space:nowrap}
+.fall{font-size:13.5px;margin:0 0 4px}
+table.um{border-collapse:collapse;font-size:14.5px;margin:4px 0}
+table.um th,table.um td{border:1.8px solid var(--ink);padding:1px 12px;text-align:center;line-height:1.75}
+table.um th{background:var(--blau-hell)}
+.umwrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.umwrap table.um{width:100%}
+.stell{font-size:12.5px;line-height:1.45;border-left:4px solid var(--gelb);padding:3px 0 3px 12px;background:#fffaf0;border-radius:0 8px 8px 0;margin:5px 0 0}
+.vglzeile{font-size:12.5px;line-height:1.9}
+.story{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center;margin:0 0 6px;font-size:14.5px}
+.story p{margin:0}
+.story b.q{display:block;margin-top:2px}
+.bild-klein{width:96px}
+.kzone{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.karobox{position:relative}
+.karobox svg.karo{display:block}
+.karobox table{position:absolute;left:0;top:0;border-collapse:collapse;table-layout:fixed}
+.karobox table th,.karobox table td{height:10mm;padding:0;text-align:center;font-size:14px;border:0.35mm solid var(--ink);line-height:1}
+.karobox table th{background:rgba(227,239,252,.85);font-size:12.5px}
+.karobox td.t{background:rgba(47,127,214,.16)}
+.karobox td.d{background:rgba(240,163,10,.24)}
+.karobox td.x{background:rgba(46,158,87,.16);font-weight:bold}
+.calc{font-size:14.5px;line-height:2.15}
+.tipp{margin:6px 0 0;font-size:12.5px;color:var(--muted)}
+.sw{display:inline-block;padding:0 6px;border-radius:4px;font-weight:bold}
+.sw.o{background:rgba(240,163,10,.28)}.sw.b{background:rgba(47,127,214,.2)}
+.antwort{margin-top:6px;padding:4px 12px;border-radius:10px;background:#f0faf3;border:1.8px solid var(--gruen);font-size:14.5px}
+.zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.weg{border:1.8px solid #9fb3cf;border-radius:10px;padding:5px 11px 6px;font-size:14px;line-height:2.05}
+.weg h3{margin:0;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.selbst .karobox{margin-top:4px}
+.loes{display:none;position:absolute;left:3mm;top:-2.5mm;font-family:"Bradley Hand","Segoe Print","Chalkboard SE","Comic Sans MS",cursive;font-size:14px;color:var(--blau-dk);line-height:10mm}
+body.sol .loes{display:block}
+.modell{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center}
+.modell p{margin:0;font-size:13.5px;line-height:1.5}
+.modell .merk{margin:6px 0 0}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .sheet{padding:0;max-width:none}
+  .toolbar,details.hilfe{display:none !important}
+  .page{width:210mm;margin:0;border-radius:0;box-shadow:none;padding:8mm 13mm 6mm;break-after:page;page-break-after:always;max-width:none}
+  .page:last-child{break-after:auto;page-break-after:auto}
+  .luecke{background:none !important}
+  .aufgabe{padding:2mm 4mm 2.4mm;margin:0 0 2.4mm}
+  .wort{min-height:0;padding:0 8px;font-size:10pt}
+  .bank{margin:1mm 0 0;padding:1mm 3mm;gap:4px}
+}
+@media (max-width:700px){
+  .fig,.story,.modell,.umwrap,.zwei,.kzone{grid-template-columns:1fr}
+  .page{padding:14px 12px}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="toolbar" id="toolbar">
+    <button class="tbtn" id="pruefen" type="button">Prüfen</button>
+    <button class="tbtn alt" id="leeren" type="button">Alles löschen</button>
+    <button class="tbtn alt" id="pdf" type="button">Als PDF sichern</button>
+    <span id="ergebnis" aria-live="polite"></span>
+  </div>
+  <details class="hilfe"><summary>So füllst du aus und sicherst das PDF</summary>
+    <p>Tippe ein Wort im Wortspeicher an, es leuchtet gelb. Dann tippe auf die Lücke. Tippst du eine ausgefüllte Lücke an, wird sie wieder leer. Mit „Prüfen“ siehst du, was stimmt (grün) und was nicht (rot). Mit „Als PDF sichern“ legst du das Blatt danach in OneNote ab, so wie es in der <a href="onenote-anleitung.html">Anleitung</a> steht.</p>
+  </details>
+<section class="page">
+  <header class="kopf">
+    <div class="kopficon">‰</div>
+    <div><div class="kicker">Mathematik &middot; Klasse 8 &middot; Hefteintrag</div>
+    <h1>Promille: Rechnen mit Tausendstel<span class="sol-flag">Lösung</span></h1></div>
+  </header>
+  <div class="felder">Name:<span class="fn">&nbsp;</span> Klasse:<span>&nbsp;</span> Datum:<span>&nbsp;</span></div>
+
+  <section class="aufgabe">
+    <h2><b>1</b>Das Zeichen ‰</h2>
+    <p class="hinw">Tippe erst ein Wort im Wortspeicher an, dann die Lücke, in die es gehört.</p>
+    <div class="fig"><svg class="bild" viewBox="0 0 470 156" role="img" aria-label="Bierflasche mit 5 Prozent und Bluttropfen mit 0,5 Promille">
+<rect x="1.5" y="1.5" width="467" height="153" rx="14" fill="#f4f9ff" stroke="#9fb3cf" stroke-width="1.5"/>
+<rect x="64" y="12" width="26" height="9" rx="3" fill="#f26b5b" stroke="#1b2a41" stroke-width="2"/>
+<path d="M68 21h18v34c0 6 14 12 14 28v48a8 8 0 0 1-8 8H62a8 8 0 0 1-8-8V83c0-16 14-22 14-28z" fill="#d9a04a" stroke="#1b2a41" stroke-width="3" stroke-linejoin="round"/>
+<rect x="58" y="86" width="38" height="36" rx="4" fill="#fff" stroke="#1b2a41" stroke-width="2"/>
+<text x="77" y="103" text-anchor="middle" font-family="Verdana,Arial" font-weight="bold" font-size="13" fill="#1b2a41">5 %</text>
+<text x="77" y="117" text-anchor="middle" font-family="Verdana,Arial" font-size="10" fill="#1b2a41">vol.</text>
+<text x="77" y="148" text-anchor="middle" font-family="Verdana,Arial" font-size="12" fill="#5a6a80">Flasche</text>
+<text x="118" y="104" font-family="Verdana,Arial" font-weight="bold" font-size="15" fill="#1d4f9a">= 50 ‰</text>
+<line x1="190" y1="76" x2="285" y2="76" stroke="#1b2a41" stroke-width="3" stroke-linecap="round"/>
+<polygon points="296,76 281,67 281,85" fill="#1b2a41"/>
+<text x="240" y="62" text-anchor="middle" font-family="Verdana,Arial" font-weight="bold" font-size="14" fill="#1b2a41">100-mal dünner</text>
+<path d="M377 16C377 16 336 70 336 98a41 41 0 0 0 82 0C418 70 377 16 377 16z" fill="#fde0dc" stroke="#f26b5b" stroke-width="3.5" stroke-linejoin="round"/>
+<text x="377" y="104" text-anchor="middle" font-family="Verdana,Arial" font-weight="bold" font-size="19" fill="#b8392b">0,5 ‰</text>
+<text x="377" y="148" text-anchor="middle" font-family="Verdana,Arial" font-size="12" fill="#5a6a80">im Blut</text>
+</svg>
+      <p>Auf der Flasche steht der Anteil im Getränk: <b>5 % vol.</b> sind <b>50 ‰</b>. Im Blut gibt man den Anteil in Promille an. Dort sind schon 0,5 ‰ gefährlich viel.</p></div>
+    <div class="merk">
+      <p>Promille heißt „von <button type="button" class="luecke" data-ans="Tausend" style="min-width:6.7ch" aria-label="Lücke"></button>“. Das Zeichen ist ‰.<br>
+      1 ‰ = 1/<button type="button" class="luecke" data-ans="1000" style="min-width:4.3ch" aria-label="Lücke"></button> = <button type="button" class="luecke" data-ans="0,001" style="min-width:5.1ch" aria-label="Lücke"></button>. Das Ganze sind <button type="button" class="luecke" data-ans="1000" style="min-width:4.3ch" aria-label="Lücke"></button> ‰.<br>
+      <span class="vglzeile">Prozent: Nenner 100, Komma um 2 Stellen. Promille: Nenner <button type="button" class="luecke" data-ans="1000" style="min-width:4.3ch" aria-label="Lücke"></button>, Komma um <button type="button" class="luecke" data-ans="3" style="min-width:3.2ch" aria-label="Lücke"></button> Stellen.</span></p>
+    </div>
+    <div class="bank"><i>Wortspeicher</i><button type="button" class="wort">Tausend</button><button type="button" class="wort">Hundert</button><button type="button" class="wort">1000</button><button type="button" class="wort">1000</button><button type="button" class="wort">1000</button><button type="button" class="wort">0,001</button><button type="button" class="wort">3</button><button type="button" class="wort">2</button></div>
+  </section>
+
+  <section class="aufgabe">
+    <h2><b>2</b>Die drei Begriffe</h2>
+    <p class="hinw">Wie bei Prozent gibt es Grundwert, Promillesatz und Promillewert. Ordne zu.</p>
+    <p class="fall"><b>Schule:</b> An einer Schule mit 800 Schülern fehlen heute 15 ‰ krank. Das sind 12 Schüler.<br>
+    <b>Meerwasser:</b> In 2000 g Meerwasser sind 35 ‰ Salz. Das sind 70 g.</p>
+    <table class="zu">
+      <tr><th></th><th>Schule</th><th>Meerwasser</th></tr>
+      <tr><td class="k">Grundwert</td><td><button type="button" class="luecke" data-ans="800 Schüler" style="min-width:9.8ch" aria-label="Lücke"></button></td><td><button type="button" class="luecke" data-ans="2000 g" style="min-width:5.9ch" aria-label="Lücke"></button></td></tr>
+      <tr><td class="k">Promillesatz</td><td><button type="button" class="luecke" data-ans="15 ‰" style="min-width:4.3ch" aria-label="Lücke"></button></td><td><button type="button" class="luecke" data-ans="35 ‰" style="min-width:4.3ch" aria-label="Lücke"></button></td></tr>
+      <tr><td class="k">Promillewert</td><td><button type="button" class="luecke" data-ans="12 Schüler" style="min-width:9.0ch" aria-label="Lücke"></button></td><td><button type="button" class="luecke" data-ans="70 g" style="min-width:4.3ch" aria-label="Lücke"></button></td></tr>
+    </table>
+    <div class="bank"><i>Wortspeicher</i><button type="button" class="wort">70 g</button><button type="button" class="wort">12 Schüler</button><button type="button" class="wort">35 ‰</button><button type="button" class="wort">800 Schüler</button><button type="button" class="wort">15 ‰</button><button type="button" class="wort">2000 g</button></div>
+  </section>
+
+  <section class="aufgabe">
+    <h2><b>3</b>Umrechnen: Dezimalzahl und Promille</h2>
+    <div class="umwrap">
+      <table class="um">
+        <tr><th>Dezimalzahl</th><th>Promille</th></tr>
+        <tr><td>0,004</td><td><button type="button" class="luecke" data-ans="4 ‰" style="min-width:3.5ch" aria-label="Lücke"></button></td></tr>
+        <tr><td>0,012</td><td><button type="button" class="luecke" data-ans="12 ‰" style="min-width:4.3ch" aria-label="Lücke"></button></td></tr>
+        <tr><td>0,0075</td><td><button type="button" class="luecke" data-ans="7,5 ‰" style="min-width:5.1ch" aria-label="Lücke"></button></td></tr>
+      </table>
+      <table class="um">
+        <tr><th>Promille</th><th>Dezimalzahl</th></tr>
+        <tr><td>9 ‰</td><td><button type="button" class="luecke" data-ans="0,009" style="min-width:5.1ch" aria-label="Lücke"></button></td></tr>
+        <tr><td>35 ‰</td><td><button type="button" class="luecke" data-ans="0,035" style="min-width:5.1ch" aria-label="Lücke"></button></td></tr>
+        <tr><td>0,6 ‰</td><td><button type="button" class="luecke" data-ans="0,0006" style="min-width:5.9ch" aria-label="Lücke"></button></td></tr>
+      </table>
+    </div>
+    <p class="stell">Dezimalzahl in Promille: Komma <b>3 Stellen nach rechts</b>. Promille in Dezimalzahl: Komma <b>3 Stellen nach links</b>. Probe: 1 = 1000 ‰.</p>
+    <div class="bank"><i>Wortspeicher</i><button type="button" class="wort">4 ‰</button><button type="button" class="wort">12 ‰</button><button type="button" class="wort">7,5 ‰</button><button type="button" class="wort">0,009</button><button type="button" class="wort">0,035</button><button type="button" class="wort">0,0006</button></div>
+  </section>
+</section>
+<section class="page">
+  <section class="aufgabe">
+    <h2><b>4</b>Promille berechnen: 4 ‰ von 35 000 €</h2>
+    <div class="story"><svg class="bild bild-klein" viewBox="0 0 170 96" role="img" aria-label="Sparschwein mit 35 000 Euro">
+<ellipse cx="82" cy="54" rx="52" ry="34" fill="#fbd5d0" stroke="#1b2a41" stroke-width="3"/>
+<ellipse cx="136" cy="54" rx="13" ry="10" fill="#f7b9b1" stroke="#1b2a41" stroke-width="3"/>
+<circle cx="132" cy="54" r="2" fill="#1b2a41"/><circle cx="141" cy="54" r="2" fill="#1b2a41"/>
+<path d="M104 24l6-14 10 12z" fill="#f7b9b1" stroke="#1b2a41" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="116" cy="42" r="3.2" fill="#1b2a41"/>
+<rect x="66" y="22" width="26" height="5" rx="2.5" fill="#1b2a41"/>
+<rect x="44" y="80" width="12" height="14" rx="3" fill="#f7b9b1" stroke="#1b2a41" stroke-width="3"/>
+<rect x="96" y="80" width="12" height="14" rx="3" fill="#f7b9b1" stroke="#1b2a41" stroke-width="3"/>
+<circle cx="60" cy="6" r="0" fill="none"/>
+<circle cx="36" cy="30" r="14" fill="#f6c344" stroke="#1b2a41" stroke-width="2.5"/>
+<text x="36" y="35" text-anchor="middle" font-family="Verdana,Arial" font-weight="bold" font-size="14" fill="#1b2a41">€</text>
+</svg><p>Auf einem Sparkonto liegen 35 000 €. Die Bank zahlt 4 ‰ Zinsen pro Jahr.
+      <b class="q">Wie viel Euro Zinsen sind das?</b></p></div>
+    <div class="kzone">
+      <div class="karobox"><svg class="karo " width="55.35mm" height="30.35mm" viewBox="-0.175 -0.175 55.35 30.35" aria-hidden="true"><path d="M0 0V30M5 0V30M10 0V30M15 0V30M20 0V30M25 0V30M30 0V30M35 0V30M40 0V30M45 0V30M50 0V30M55 0V30M0 0H55M0 5H55M0 10H55M0 15H55M0 20H55M0 25H55M0 30H55" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg><table style="width:55mm">
+<colgroup><col style="width:25mm"><col style="width:30mm"></colgroup>
+<tr><th>‰</th><th>€</th></tr>
+<tr><td class="t"><button type="button" class="luecke" data-ans="1000" style="min-width:4.3ch" aria-label="Lücke"></button></td><td class="d">35 000</td></tr>
+<tr><td class="d">4</td><td class="x">x</td></tr>
+</table></div>
+      <div class="calc">
+        x = ( <button type="button" class="luecke" data-ans="4" style="min-width:3.2ch" aria-label="Lücke"></button> · <button type="button" class="luecke" data-ans="35 000" style="min-width:5.9ch" aria-label="Lücke"></button> ) : <button type="button" class="luecke" data-ans="1000" style="min-width:4.3ch" aria-label="Lücke"></button><br>
+        x = <button type="button" class="luecke" data-ans="140" style="min-width:3.5ch" aria-label="Lücke"></button> €
+      </div>
+    </div>
+    <p class="tipp"><b>Formel über Kreuz:</b> 1000 ‰ sind das Ganze (der Grundwert). Die zwei <span class="sw o">orangen</span> Zahlen multiplizierst du, durch die <span class="sw b">blaue</span> teilst du.</p>
+    <div class="antwort"><b>Antwort:</b> Die Bank zahlt <button type="button" class="luecke" data-ans="140" style="min-width:3.5ch" aria-label="Lücke"></button> € Zinsen.</div>
+    <div class="bank"><i>Wortspeicher</i><button type="button" class="wort">1000</button><button type="button" class="wort">1000</button><button type="button" class="wort">4</button><button type="button" class="wort">35 000</button><button type="button" class="wort">140</button><button type="button" class="wort">140</button><button type="button" class="wort">100</button><button type="button" class="wort">1400</button></div>
+  </section>
+
+  <section class="aufgabe">
+    <h2><b>5</b>Zwei weitere Wege, dasselbe Ergebnis</h2>
+    <div class="zwei">
+      <div class="weg"><h3>Operator</h3>4 ‰ = <button type="button" class="luecke" data-ans="0,004" style="min-width:5.1ch" aria-label="Lücke"></button><br>35 000 € · <button type="button" class="luecke" data-ans="0,004" style="min-width:5.1ch" aria-label="Lücke"></button> = <button type="button" class="luecke" data-ans="140" style="min-width:3.5ch" aria-label="Lücke"></button> €</div>
+      <div class="weg"><h3>Dreisatz (extra)</h3>1000 ‰ ≙ 35 000 €<br>1 ‰ ≙ <button type="button" class="luecke" data-ans="35" style="min-width:3.2ch" aria-label="Lücke"></button> € &nbsp;<small>: 1000</small><br>4 ‰ ≙ <button type="button" class="luecke" data-ans="140" style="min-width:3.5ch" aria-label="Lücke"></button> € &nbsp;<small>· 4</small></div>
+    </div>
+    <div class="bank"><i>Wortspeicher</i><button type="button" class="wort">0,004</button><button type="button" class="wort">0,004</button><button type="button" class="wort">140</button><button type="button" class="wort">140</button><button type="button" class="wort">35</button><button type="button" class="wort">0,04</button><button type="button" class="wort">3,5</button></div>
+  </section>
+
+  <section class="aufgabe selbst">
+    <h2><b>6</b>Rechne selbst auf dem Karo</h2>
+    <p class="hinw">a) 6 ‰ von 4500 €  &nbsp;&nbsp; b) 2,5 ‰ von 800 g. Schreibe den Rechenweg auf, mit der Formel über Kreuz oder dem Operator.</p>
+    <div class="karobox"><svg class="karo " width="170.35mm" height="40.35mm" viewBox="-0.175 -0.175 170.35 40.35" aria-hidden="true"><path d="M0 0V40M5 0V40M10 0V40M15 0V40M20 0V40M25 0V40M30 0V40M35 0V40M40 0V40M45 0V40M50 0V40M55 0V40M60 0V40M65 0V40M70 0V40M75 0V40M80 0V40M85 0V40M90 0V40M95 0V40M100 0V40M105 0V40M110 0V40M115 0V40M120 0V40M125 0V40M130 0V40M135 0V40M140 0V40M145 0V40M150 0V40M155 0V40M160 0V40M165 0V40M170 0V40M0 0H170M0 5H170M0 10H170M0 15H170M0 20H170M0 25H170M0 30H170M0 35H170M0 40H170" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg><div class="loes">a) 4500 · 0,006 = 27 €<br>b) 800 · 0,0025 = 2 g</div></div>
+  </section>
+
+  <section class="aufgabe">
+    <h2><b>7</b>Das Blut-Modell</h2>
+    <div class="modell"><svg class="bild bild-klein" viewBox="0 0 150 120" role="img" aria-label="Messbecher mit 6 Litern Blut">
+<path d="M34 14h82l-6 94a8 8 0 0 1-8 7H48a8 8 0 0 1-8-7z" fill="#fff" stroke="#1b2a41" stroke-width="3" stroke-linejoin="round"/>
+<path d="M38 46h74l-4.5 62a8 8 0 0 1-8 7H50a8 8 0 0 1-8-7z" fill="#f9c4bd"/>
+<path d="M38 46h74" stroke="#f26b5b" stroke-width="3"/>
+<g stroke="#1b2a41" stroke-width="2"><path d="M116 36h10M116 56h10M116 76h10M116 96h10"/></g>
+<text x="75" y="85" text-anchor="middle" font-family="Verdana,Arial" font-weight="bold" font-size="17" fill="#b8392b">6 l</text>
+<text x="75" y="14" text-anchor="middle" font-family="Verdana,Arial" font-size="1" fill="none">.</text>
+</svg>
+      <p>Im Unterricht tun wir so, als wäre der ganze Alkohol im Blut (6 l). Das ist ein <b>Rechenmodell</b>. In Wirklichkeit verteilt sich der Alkohol im ganzen Körper, und die Leber baut ihn ab. Promille im Blut heißt: Gramm Alkohol pro Kilogramm Blut. Ob jemand noch fahren kann, sagt keine Rechnung.</p></div>
+  </section>
+</section>
+</div>
+<script>
+(function () {
+  var ok = 'ok', bad = 'bad';
+  var luecken = Array.prototype.slice.call(document.querySelectorAll('.luecke'));
+  var sel = null, aktiv = null;
+  function bankFuer(l) { return l.closest('.aufgabe').querySelector('.bank'); }
+  function ergebnis(t) { document.getElementById('ergebnis').textContent = t; }
+  function freigeben(l) {
+    if (l._chip) { l._chip.classList.remove('used'); l._chip = null; }
+    l.textContent = ''; l.classList.remove(ok, bad);
+  }
+  function fuellen(l, chip) {
+    freigeben(l);
+    chip.classList.add('used'); chip.classList.remove('sel');
+    l._chip = chip; l.textContent = chip.textContent;
+    sel = null; if (aktiv) { aktiv.classList.remove('aktiv'); aktiv = null; }
+    ergebnis('');
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.wort'), function (c) {
+    c.addEventListener('click', function () {
+      if (aktiv) { if (bankFuer(aktiv) === c.parentNode) { fuellen(aktiv, c); } return; }
+      if (sel) { sel.classList.remove('sel'); }
+      sel = (sel === c) ? null : c; if (sel) { sel.classList.add('sel'); }
+    });
+  });
+  luecken.forEach(function (l) {
+    l.addEventListener('click', function () {
+      if (sel && bankFuer(l) === sel.parentNode) { fuellen(l, sel); return; }
+      if (l.textContent) { freigeben(l); ergebnis(''); return; }
+      if (aktiv) { aktiv.classList.remove('aktiv'); }
+      aktiv = (aktiv === l) ? null : l; if (aktiv) { aktiv.classList.add('aktiv'); }
+    });
+  });
+  document.getElementById('pruefen').addEventListener('click', function () {
+    var richtig = 0, leer = 0;
+    luecken.forEach(function (l) {
+      l.classList.remove(ok, bad);
+      if (!l.textContent) { leer++; return; }
+      if (l.textContent === l.getAttribute('data-ans')) { l.classList.add(ok); richtig++; } else { l.classList.add(bad); }
+    });
+    ergebnis(richtig + ' von ' + luecken.length + ' richtig' + (leer ? ', ' + leer + ' noch leer' : ''));
+  });
+  document.getElementById('leeren').addEventListener('click', function () {
+    luecken.forEach(freigeben);
+    if (sel) { sel.classList.remove('sel'); sel = null; }
+    if (aktiv) { aktiv.classList.remove('aktiv'); aktiv = null; }
+    ergebnis('');
+  });
+  document.getElementById('pdf').addEventListener('click', function () { window.print(); });
+})();
+</script>
+</body>
+</html>

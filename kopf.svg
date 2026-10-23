@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 260" role="img" aria-label="Bierflasche mit Etikett 5 Prozent und Messgerät mit 0,5 Promille">
+  <rect x="6" y="6" width="348" height="248" rx="26" fill="#e3effc" stroke="#1b2a41" stroke-width="3"/>
+  <!-- Flasche -->
+  <g transform="translate(70,26)">
+    <rect x="34" y="0" width="30" height="26" rx="6" fill="#d98e00" stroke="#1b2a41" stroke-width="3"/>
+    <path d="M36 26 h26 v36 q0 14 14 30 q8 14 8 34 v70 q0 22 -22 22 h-26 q-22 0 -22 -22 v-70 q0 -20 8 -34 q14 -16 14 -30z" fill="#e8a317" stroke="#1b2a41" stroke-width="3"/>
+    <rect x="12" y="118" width="74" height="62" rx="8" fill="#fff" stroke="#1b2a41" stroke-width="3"/>
+    <text x="49" y="146" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="24" fill="#1b2a41">5 %</text>
+    <text x="49" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1b2a41">vol.</text>
+  </g>
+  <!-- Messgerät -->
+  <g transform="translate(206,86)">
+    <rect x="0" y="0" width="120" height="128" rx="16" fill="#fff" stroke="#1b2a41" stroke-width="3"/>
+    <rect x="12" y="14" width="96" height="52" rx="8" fill="#eef5fd" stroke="#1b2a41" stroke-width="2.5"/>
+    <text x="60" y="49" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="25" fill="#1d4f9a">0,5 ‰</text>
+    <circle cx="36" cy="96" r="13" fill="#f26b5b" stroke="#1b2a41" stroke-width="2.5"/>
+    <circle cx="84" cy="96" r="13" fill="#f6c344" stroke="#1b2a41" stroke-width="2.5"/>
+  </g>
+  <text x="266" y="62" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="40" fill="#f26b5b">?</text>
+</svg>

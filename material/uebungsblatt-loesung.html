@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lösung: Übungsblatt Promille</title><meta name="robots" content="noindex, nofollow">
+<style>
+:root{--ink:#1b2a41;--muted:#5a6a80;--line:#9fb3cf;--bg:#fbf8f1;--paper:#fff;--blau:#2f7fd6;--blau-dk:#1d4f9a;--blau-hell:#e3effc;--gelb:#f6c344;--korall:#f26b5b;--orange:#f0a30a;--gruen:#2e9e57}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Verdana,Arial,Helvetica,sans-serif;line-height:1.5;font-size:17px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+.blatt{max-width:210mm;margin:0 auto;background:#fff;padding:9mm 12mm 8mm}
+.kopf{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.kopficon{flex:none;width:50px;height:50px;border-radius:14px;background:var(--blau-hell);border:2.5px solid var(--ink);display:grid;place-items:center;font-family:"Arial Black",Arial,sans-serif;font-size:24px;color:var(--blau-dk)}
+.kicker{font-size:11.5px;font-weight:bold;letter-spacing:.09em;text-transform:uppercase;color:var(--blau-dk)}
+h1{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:25px;line-height:1.1;margin:2px 0 0}
+.flag{margin-left:10px;font-size:12px;letter-spacing:.06em;background:var(--blau);color:#fff;padding:2px 10px;border-radius:12px;vertical-align:middle;font-family:Verdana,Arial,sans-serif}
+.felder{display:flex;gap:18px;font-size:12.5px;color:var(--muted);margin:4px 0 6px}
+.felder span{display:inline-block;border-bottom:1.5px solid var(--ink);min-width:105px;margin-left:4px}
+.felder .fn{min-width:180px}
+.legende{font-size:12.5px;margin:0 0 6px;color:var(--muted)}
+.legende b{color:var(--ink)}
+.knopf{margin:0 0 8px}
+.knopf button{min-height:44px;border-radius:12px;border:2px solid var(--blau-dk);background:var(--blau);color:#fff;font-weight:bold;font-size:15px;padding:6px 18px}
+.t{margin:0 0 3.5mm;break-inside:avoid;page-break-inside:avoid}
+.th{display:flex;align-items:center;gap:8px;margin-bottom:1px}
+.nr{flex:none;width:26px;height:26px;border-radius:50%;background:var(--blau);color:#fff;font-weight:bold;font-size:14px;display:inline-grid;place-items:center}
+.titel{font-weight:bold;font-size:14.5px}
+.stern{margin-left:auto;font-size:13px;letter-spacing:1px;color:#d49a00;white-space:nowrap}
+.icon{width:11mm;height:11mm;flex:none}
+.txt{margin:0 0 2px;font-size:12.8px;line-height:1.4}
+.teile{display:flex;flex-wrap:wrap;gap:3px 22px;font-size:13px;margin:0 0 2px}
+.teile.lang{display:block}
+.teile.lang div{margin-bottom:2px;line-height:1.4}
+.teile b{color:var(--blau-dk)}
+svg.karo{display:block}
+.lo{width:100%;border-collapse:collapse;font-size:12.5px;margin:0 0 3mm}
+.lo th,.lo td{border:1.5px solid var(--ink);padding:3px 8px;text-align:left;vertical-align:top;line-height:1.4}
+.lo th{background:var(--blau-hell)}
+.lo td.nr2{font-weight:bold;white-space:nowrap}
+.lo td.erg{font-weight:bold;color:var(--blau-dk);white-space:nowrap}
+.lo tr{break-inside:avoid}
+.hinw{font-size:12px;color:var(--muted);margin:6px 0 0}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .blatt{max-width:none;padding:8mm 12mm 6mm}
+  .knopf{display:none}
+}
+</style></head>
+<body><div class="blatt">
+<header class="kopf"><div class="kopficon">‰</div>
+<div><div class="kicker">Mathematik &middot; Klasse 8 &middot; Übungsblatt</div><h1>Promille üben<span class="flag">Lösung</span></h1></div></header>
+<div class="knopf"><button type="button" onclick="window.print()">Als PDF herunterladen</button></div>
+<table class="lo"><tr><th>Nr.</th><th>Rechenweg</th><th>Ergebnis</th></tr><tr><td class="nr2">1a</td><td>7 ‰ = 7 : 1000 = 0,007</td><td class="erg">0,007</td></tr><tr><td class="nr2">1b</td><td>18 ‰ = 18 : 1000 = 0,018</td><td class="erg">0,018</td></tr><tr><td class="nr2">1c</td><td>2,5 ‰ = 2,5 : 1000 = 0,0025</td><td class="erg">0,0025</td></tr><tr><td class="nr2">1d</td><td>450 ‰ = 450 : 1000 = 0,45</td><td class="erg">0,45</td></tr><tr><td class="nr2">2a</td><td>0,006 · 1000 = 6 ‰</td><td class="erg">6 ‰</td></tr><tr><td class="nr2">2b</td><td>0,031 · 1000 = 31 ‰</td><td class="erg">31 ‰</td></tr><tr><td class="nr2">2c</td><td>0,0004 · 1000 = 0,4 ‰</td><td class="erg">0,4 ‰</td></tr><tr><td class="nr2">2d</td><td>0,8 · 1000 = 800 ‰</td><td class="erg">800 ‰</td></tr><tr><td class="nr2">3a</td><td>4 ‰ = 0,004; 3000 € · 0,004 = 12 €</td><td class="erg">12 €</td></tr><tr><td class="nr2">3b</td><td>7 ‰ = 0,007; 2500 kg · 0,007 = 17,5 kg</td><td class="erg">17,5 kg</td></tr><tr><td class="nr2">3c</td><td>12 ‰ = 0,012; 600 m · 0,012 = 7,2 m</td><td class="erg">7,2 m</td></tr><tr><td class="nr2">3d</td><td>0,5 ‰ = 0,0005; 8000 € · 0,0005 = 4 €</td><td class="erg">4 €</td></tr><tr><td class="nr2">4a</td><td>585 ‰ = 0,585; 12 g · 0,585 = 7,02 g</td><td class="erg">7,02 g</td></tr><tr><td class="nr2">4b</td><td>750 ‰ = 0,75; 40 g · 0,75 = 30 g</td><td class="erg">30 g</td></tr><tr><td class="nr2">5</td><td>8 ‰ = 0,008; 15 000 € · 0,008 = 120 €</td><td class="erg">120 €</td></tr><tr><td class="nr2">6a</td><td>35 ‰ = 0,035; 4000 g · 0,035 = 140 g</td><td class="erg">140 g</td></tr><tr><td class="nr2">6b</td><td>35 ‰ = 0,035; 250 g · 0,035 = 8,75 g</td><td class="erg">8,75 g</td></tr><tr><td class="nr2">7</td><td>6 ‰ = 0,006; 2500 m · 0,006 = 15 m</td><td class="erg">15 m</td></tr><tr><td class="nr2">8a</td><td>15 : 5000 = 0,003 = 3 ‰</td><td class="erg">3 ‰</td></tr><tr><td class="nr2">8b</td><td>4 : 8000 = 0,0005 = 0,5 ‰</td><td class="erg">0,5 ‰</td></tr><tr><td class="nr2">9</td><td>1,3 ‰ = 0,0013; 62 000 € · 0,0013 = 80,6 €</td><td class="erg">80,6 €</td></tr><tr><td class="nr2">10</td><td>2 ‰ = 0,002; 360 € : 0,002 = 180 000 €</td><td class="erg">180 000 €</td></tr><tr><td class="nr2">11</td><td>12 ‰ = 0,012; 42 m : 0,012 = 3500 m</td><td class="erg">3500 m</td></tr><tr><td class="nr2">12a</td><td>0,8 ‰ = 0,0008; 6000 ml · 0,0008 = 4,8 ml</td><td class="erg">4,8 ml</td></tr><tr><td class="nr2">12b</td><td>3,6 : 6000 = 0,0006 = 0,6 ‰</td><td class="erg">0,6 ‰</td></tr><tr><td class="nr2">13a</td><td>5 % = 0,05; 400 € · 0,05 = 20 €</td><td class="erg">20 €</td></tr><tr><td class="nr2">13b</td><td>40 ‰ = 0,04; 500 € · 0,04 = 20 €</td><td class="erg">20 €</td></tr><tr><td class="nr2">14</td><td>3 ‰ = 0,003; 2000 € · 0,003 = 6 €</td><td class="erg">6 €</td></tr></table>
+<p class="hinw">Zu Aufgabe 13: Beide Werte sind 20 €. Der Grund: 5 % sind 50 ‰. Aufgabe a rechnet 400 € · 0,05, Aufgabe b rechnet 500 € · 0,04. Das ist Zufall der Zahlen, nicht die Regel.<br>
+Zu Aufgabe 14: Mia hat 3 ‰ als 0,03 geschrieben. Das wäre 3 %. 3 ‰ sind 0,003 (Komma um 3 Stellen). Richtig: 2000 € · 0,003 = 6 €.<br>
+Zu Aufgabe 12: Das Blut-Modell ist nur ein Rechenmodell. In Wirklichkeit verteilt sich der Alkohol im ganzen Körper.</p>
+</div></body></html>

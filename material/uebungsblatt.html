@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Übungsblatt: Promille</title><meta name="robots" content="noindex, nofollow">
+<style>
+:root{--ink:#1b2a41;--muted:#5a6a80;--line:#9fb3cf;--bg:#fbf8f1;--paper:#fff;--blau:#2f7fd6;--blau-dk:#1d4f9a;--blau-hell:#e3effc;--gelb:#f6c344;--korall:#f26b5b;--orange:#f0a30a;--gruen:#2e9e57}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Verdana,Arial,Helvetica,sans-serif;line-height:1.5;font-size:17px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+.blatt{max-width:210mm;margin:0 auto;background:#fff;padding:9mm 12mm 8mm}
+.kopf{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.kopficon{flex:none;width:50px;height:50px;border-radius:14px;background:var(--blau-hell);border:2.5px solid var(--ink);display:grid;place-items:center;font-family:"Arial Black",Arial,sans-serif;font-size:24px;color:var(--blau-dk)}
+.kicker{font-size:11.5px;font-weight:bold;letter-spacing:.09em;text-transform:uppercase;color:var(--blau-dk)}
+h1{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:25px;line-height:1.1;margin:2px 0 0}
+.flag{margin-left:10px;font-size:12px;letter-spacing:.06em;background:var(--blau);color:#fff;padding:2px 10px;border-radius:12px;vertical-align:middle;font-family:Verdana,Arial,sans-serif}
+.felder{display:flex;gap:18px;font-size:12.5px;color:var(--muted);margin:4px 0 6px}
+.felder span{display:inline-block;border-bottom:1.5px solid var(--ink);min-width:105px;margin-left:4px}
+.felder .fn{min-width:180px}
+.legende{font-size:12.5px;margin:0 0 6px;color:var(--muted)}
+.legende b{color:var(--ink)}
+.knopf{margin:0 0 8px}
+.knopf button{min-height:44px;border-radius:12px;border:2px solid var(--blau-dk);background:var(--blau);color:#fff;font-weight:bold;font-size:15px;padding:6px 18px}
+.t{margin:0 0 3.5mm;break-inside:avoid;page-break-inside:avoid}
+.th{display:flex;align-items:center;gap:8px;margin-bottom:1px}
+.nr{flex:none;width:26px;height:26px;border-radius:50%;background:var(--blau);color:#fff;font-weight:bold;font-size:14px;display:inline-grid;place-items:center}
+.titel{font-weight:bold;font-size:14.5px}
+.stern{margin-left:auto;font-size:13px;letter-spacing:1px;color:#d49a00;white-space:nowrap}
+.icon{width:11mm;height:11mm;flex:none}
+.txt{margin:0 0 2px;font-size:12.8px;line-height:1.4}
+.teile{display:flex;flex-wrap:wrap;gap:3px 22px;font-size:13px;margin:0 0 2px}
+.teile.lang{display:block}
+.teile.lang div{margin-bottom:2px;line-height:1.4}
+.teile b{color:var(--blau-dk)}
+svg.karo{display:block}
+.lo{width:100%;border-collapse:collapse;font-size:12.5px;margin:0 0 3mm}
+.lo th,.lo td{border:1.5px solid var(--ink);padding:3px 8px;text-align:left;vertical-align:top;line-height:1.4}
+.lo th{background:var(--blau-hell)}
+.lo td.nr2{font-weight:bold;white-space:nowrap}
+.lo td.erg{font-weight:bold;color:var(--blau-dk);white-space:nowrap}
+.lo tr{break-inside:avoid}
+.hinw{font-size:12px;color:var(--muted);margin:6px 0 0}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .blatt{max-width:none;padding:8mm 12mm 6mm}
+  .knopf{display:none}
+}
+</style></head>
+<body><div class="blatt">
+<header class="kopf"><div class="kopficon">‰</div>
+<div><div class="kicker">Mathematik &middot; Klasse 8 &middot; Übungsblatt</div><h1>Promille üben</h1></div></header>
+<div class="felder">Name:<span class="fn">&nbsp;</span> Klasse:<span>&nbsp;</span> Datum:<span>&nbsp;</span></div>
+<p class="legende"><b>★☆☆</b> leicht &nbsp; <b>★★☆</b> mittel &nbsp; <b>★★★</b> schwer. Rechne auf den Karofeldern. Bei den Aufgaben mit Blut gilt das Blut-Modell.</p>
+<div class="knopf"><button type="button" onclick="window.print()">Als PDF herunterladen</button></div>
+<div class="t">
+<div class="th"><span class="nr">1</span><span class="titel">Promille in Dezimalzahl</span><span class="stern" title="Schwierigkeit">★☆☆</span></div>
+<p class="txt">Schreibe als Dezimalzahl.</p><div class="teile"><div><b>a)</b> 7 ‰</div><div><b>b)</b> 18 ‰</div><div><b>c)</b> 2,5 ‰</div><div><b>d)</b> 450 ‰</div></div>
+<svg class="karo " width="180.35mm" height="20.35mm" viewBox="-0.175 -0.175 180.35 20.35" aria-hidden="true"><path d="M0 0V20M5 0V20M10 0V20M15 0V20M20 0V20M25 0V20M30 0V20M35 0V20M40 0V20M45 0V20M50 0V20M55 0V20M60 0V20M65 0V20M70 0V20M75 0V20M80 0V20M85 0V20M90 0V20M95 0V20M100 0V20M105 0V20M110 0V20M115 0V20M120 0V20M125 0V20M130 0V20M135 0V20M140 0V20M145 0V20M150 0V20M155 0V20M160 0V20M165 0V20M170 0V20M175 0V20M180 0V20M0 0H180M0 5H180M0 10H180M0 15H180M0 20H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">2</span><span class="titel">Dezimalzahl in Promille</span><span class="stern" title="Schwierigkeit">★☆☆</span></div>
+<p class="txt">Schreibe als Promille.</p><div class="teile"><div><b>a)</b> 0,006</div><div><b>b)</b> 0,031</div><div><b>c)</b> 0,0004</div><div><b>d)</b> 0,8</div></div>
+<svg class="karo " width="180.35mm" height="20.35mm" viewBox="-0.175 -0.175 180.35 20.35" aria-hidden="true"><path d="M0 0V20M5 0V20M10 0V20M15 0V20M20 0V20M25 0V20M30 0V20M35 0V20M40 0V20M45 0V20M50 0V20M55 0V20M60 0V20M65 0V20M70 0V20M75 0V20M80 0V20M85 0V20M90 0V20M95 0V20M100 0V20M105 0V20M110 0V20M115 0V20M120 0V20M125 0V20M130 0V20M135 0V20M140 0V20M145 0V20M150 0V20M155 0V20M160 0V20M165 0V20M170 0V20M175 0V20M180 0V20M0 0H180M0 5H180M0 10H180M0 15H180M0 20H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">3</span><span class="titel">Promillewert berechnen</span><span class="stern" title="Schwierigkeit">★☆☆</span></div>
+<p class="txt">Berechne.</p><div class="teile"><div><b>a)</b> 4 ‰ von 3000 €</div><div><b>b)</b> 7 ‰ von 2500 kg</div><div><b>c)</b> 12 ‰ von 600 m</div><div><b>d)</b> 0,5 ‰ von 8000 €</div></div>
+<svg class="karo " width="180.35mm" height="25.35mm" viewBox="-0.175 -0.175 180.35 25.35" aria-hidden="true"><path d="M0 0V25M5 0V25M10 0V25M15 0V25M20 0V25M25 0V25M30 0V25M35 0V25M40 0V25M45 0V25M50 0V25M55 0V25M60 0V25M65 0V25M70 0V25M75 0V25M80 0V25M85 0V25M90 0V25M95 0V25M100 0V25M105 0V25M110 0V25M115 0V25M120 0V25M125 0V25M130 0V25M135 0V25M140 0V25M145 0V25M150 0V25M155 0V25M160 0V25M165 0V25M170 0V25M175 0V25M180 0V25M0 0H180M0 5H180M0 10H180M0 15H180M0 20H180M0 25H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">4</span><span class="titel">Gold im Schmuck</span><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="30" r="13" fill="none" stroke="#c9972b" stroke-width="6"/><circle cx="24" cy="30" r="13" fill="none" stroke="#f6c344" stroke-width="3"/><path d="M24 8l7 7-7 7-7-7z" fill="#e3effc" stroke="#1b2a41" stroke-width="2"/></svg><span class="stern" title="Schwierigkeit">★★☆</span></div>
+<p class="txt">Auf Goldschmuck steht der Feingehalt in Promille. Bei 585 sind 585 ‰ des Schmucks reines Gold.</p><div class="teile lang"><div><b>a)</b> Ein Ring wiegt 12 g und hat den Stempel 585. Wie viel Gramm reines Gold sind das?</div><div><b>b)</b> Eine Kette wiegt 40 g und hat den Stempel 750. Wie viel Gramm reines Gold sind das?</div></div>
+<svg class="karo " width="180.35mm" height="25.35mm" viewBox="-0.175 -0.175 180.35 25.35" aria-hidden="true"><path d="M0 0V25M5 0V25M10 0V25M15 0V25M20 0V25M25 0V25M30 0V25M35 0V25M40 0V25M45 0V25M50 0V25M55 0V25M60 0V25M65 0V25M70 0V25M75 0V25M80 0V25M85 0V25M90 0V25M95 0V25M100 0V25M105 0V25M110 0V25M115 0V25M120 0V25M125 0V25M130 0V25M135 0V25M140 0V25M145 0V25M150 0V25M155 0V25M160 0V25M165 0V25M170 0V25M175 0V25M180 0V25M0 0H180M0 5H180M0 10H180M0 15H180M0 20H180M0 25H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">5</span><span class="titel">Provision</span><span class="stern" title="Schwierigkeit">★★☆</span></div>
+<p class="txt">Ein Vertreter bekommt 8 ‰ Provision. Er verkauft Versicherungen im Wert von 15 000 €. Wie viel Provision bekommt er?</p>
+<svg class="karo " width="180.35mm" height="15.35mm" viewBox="-0.175 -0.175 180.35 15.35" aria-hidden="true"><path d="M0 0V15M5 0V15M10 0V15M15 0V15M20 0V15M25 0V15M30 0V15M35 0V15M40 0V15M45 0V15M50 0V15M55 0V15M60 0V15M65 0V15M70 0V15M75 0V15M80 0V15M85 0V15M90 0V15M95 0V15M100 0V15M105 0V15M110 0V15M115 0V15M120 0V15M125 0V15M130 0V15M135 0V15M140 0V15M145 0V15M150 0V15M155 0V15M160 0V15M165 0V15M170 0V15M175 0V15M180 0V15M0 0H180M0 5H180M0 10H180M0 15H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">6</span><span class="titel">Salz im Meerwasser</span><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M2 18q7-8 14 0t14 0 14 0" fill="none" stroke="#2f7fd6" stroke-width="3.5" stroke-linecap="round"/><path d="M2 30q7-8 14 0t14 0 14 0" fill="none" stroke="#2f7fd6" stroke-width="3.5" stroke-linecap="round"/><path d="M2 42q7-8 14 0t14 0 14 0" fill="none" stroke="#7fb2ea" stroke-width="3.5" stroke-linecap="round"/></svg><span class="stern" title="Schwierigkeit">★★☆</span></div>
+<p class="txt">Meerwasser enthält etwa 35 ‰ Salz.</p><div class="teile lang"><div><b>a)</b> Wie viel Gramm Salz sind in 4 kg (4000 g) Meerwasser?</div><div><b>b)</b> Wie viel Gramm Salz sind in 250 g Meerwasser?</div></div>
+<svg class="karo " width="180.35mm" height="25.35mm" viewBox="-0.175 -0.175 180.35 25.35" aria-hidden="true"><path d="M0 0V25M5 0V25M10 0V25M15 0V25M20 0V25M25 0V25M30 0V25M35 0V25M40 0V25M45 0V25M50 0V25M55 0V25M60 0V25M65 0V25M70 0V25M75 0V25M80 0V25M85 0V25M90 0V25M95 0V25M100 0V25M105 0V25M110 0V25M115 0V25M120 0V25M125 0V25M130 0V25M135 0V25M140 0V25M145 0V25M150 0V25M155 0V25M160 0V25M165 0V25M170 0V25M175 0V25M180 0V25M0 0H180M0 5H180M0 10H180M0 15H180M0 20H180M0 25H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">7</span><span class="titel">Steigung einer Straße</span><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 42L44 14v28z" fill="#e8edf5" stroke="#1b2a41" stroke-width="2.5" stroke-linejoin="round"/><path d="M4 42L44 14" stroke="#1b2a41" stroke-width="5"/><path d="M9 38l7-5M20 30l7-5M31 22l7-5" stroke="#f6c344" stroke-width="2.5" stroke-linecap="round"/></svg><span class="stern" title="Schwierigkeit">★★☆</span></div>
+<p class="txt">Ein Schild zeigt: Steigung 6 ‰. Das heißt: Auf 1000 m Strecke steigt die Straße um 6 m. Die Straße ist 2500 m lang. Wie viele Meter Höhenunterschied sind das?</p>
+<svg class="karo " width="180.35mm" height="15.35mm" viewBox="-0.175 -0.175 180.35 15.35" aria-hidden="true"><path d="M0 0V15M5 0V15M10 0V15M15 0V15M20 0V15M25 0V15M30 0V15M35 0V15M40 0V15M45 0V15M50 0V15M55 0V15M60 0V15M65 0V15M70 0V15M75 0V15M80 0V15M85 0V15M90 0V15M95 0V15M100 0V15M105 0V15M110 0V15M115 0V15M120 0V15M125 0V15M130 0V15M135 0V15M140 0V15M145 0V15M150 0V15M155 0V15M160 0V15M165 0V15M170 0V15M175 0V15M180 0V15M0 0H180M0 5H180M0 10H180M0 15H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">8</span><span class="titel">Wie viel Promille?</span><span class="stern" title="Schwierigkeit">★★☆</span></div>
+<p class="txt">Bei der Kontrolle einer Schraubenlieferung werden defekte Schrauben gezählt. Berechne den Promillesatz.</p><div class="teile lang"><div><b>a)</b> Von 5000 Schrauben sind 15 defekt.</div><div><b>b)</b> Von 8000 Schrauben sind 4 defekt.</div></div>
+<svg class="karo " width="180.35mm" height="20.35mm" viewBox="-0.175 -0.175 180.35 20.35" aria-hidden="true"><path d="M0 0V20M5 0V20M10 0V20M15 0V20M20 0V20M25 0V20M30 0V20M35 0V20M40 0V20M45 0V20M50 0V20M55 0V20M60 0V20M65 0V20M70 0V20M75 0V20M80 0V20M85 0V20M90 0V20M95 0V20M100 0V20M105 0V20M110 0V20M115 0V20M120 0V20M125 0V20M130 0V20M135 0V20M140 0V20M145 0V20M150 0V20M155 0V20M160 0V20M165 0V20M170 0V20M175 0V20M180 0V20M0 0H180M0 5H180M0 10H180M0 15H180M0 20H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">9</span><span class="titel">Hausratversicherung</span><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 24L24 8l18 16" fill="none" stroke="#1b2a41" stroke-width="3" stroke-linejoin="round"/><rect x="11" y="24" width="26" height="18" fill="#fff6dd" stroke="#1b2a41" stroke-width="2.5"/><rect x="21" y="30" width="7" height="12" fill="#f26b5b" stroke="#1b2a41" stroke-width="2"/></svg><span class="stern" title="Schwierigkeit">★★☆</span></div>
+<p class="txt">Der Hausrat einer Familie ist für 62 000 € versichert. Die Prämie beträgt 1,3 ‰ der Versicherungssumme pro Jahr. Wie hoch ist die Prämie?</p>
+<svg class="karo " width="180.35mm" height="15.35mm" viewBox="-0.175 -0.175 180.35 15.35" aria-hidden="true"><path d="M0 0V15M5 0V15M10 0V15M15 0V15M20 0V15M25 0V15M30 0V15M35 0V15M40 0V15M45 0V15M50 0V15M55 0V15M60 0V15M65 0V15M70 0V15M75 0V15M80 0V15M85 0V15M90 0V15M95 0V15M100 0V15M105 0V15M110 0V15M115 0V15M120 0V15M125 0V15M130 0V15M135 0V15M140 0V15M145 0V15M150 0V15M155 0V15M160 0V15M165 0V15M170 0V15M175 0V15M180 0V15M0 0H180M0 5H180M0 10H180M0 15H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">10</span><span class="titel">Grundwert gesucht</span><span class="stern" title="Schwierigkeit">★★★</span></div>
+<p class="txt">Eine Maklerin bekommt 2 ‰ vom Kaufpreis als Provision. Sie erhält 360 €. Wie hoch war der Kaufpreis?</p>
+<svg class="karo " width="180.35mm" height="15.35mm" viewBox="-0.175 -0.175 180.35 15.35" aria-hidden="true"><path d="M0 0V15M5 0V15M10 0V15M15 0V15M20 0V15M25 0V15M30 0V15M35 0V15M40 0V15M45 0V15M50 0V15M55 0V15M60 0V15M65 0V15M70 0V15M75 0V15M80 0V15M85 0V15M90 0V15M95 0V15M100 0V15M105 0V15M110 0V15M115 0V15M120 0V15M125 0V15M130 0V15M135 0V15M140 0V15M145 0V15M150 0V15M155 0V15M160 0V15M165 0V15M170 0V15M175 0V15M180 0V15M0 0H180M0 5H180M0 10H180M0 15H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">11</span><span class="titel">Die Passstraße</span><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M2 42L18 14l9 14 6-8 13 22z" fill="#e8edf5" stroke="#1b2a41" stroke-width="2.5" stroke-linejoin="round"/><path d="M13 23l5-9 4 6-4-2-3 3z" fill="#fff" stroke="#1b2a41" stroke-width="1.5"/></svg><span class="stern" title="Schwierigkeit">★★★</span></div>
+<p class="txt">Eine Passstraße steigt um 12 ‰. Sie überwindet 42 m Höhenunterschied. Wie lang ist die Straße?</p>
+<svg class="karo " width="180.35mm" height="15.35mm" viewBox="-0.175 -0.175 180.35 15.35" aria-hidden="true"><path d="M0 0V15M5 0V15M10 0V15M15 0V15M20 0V15M25 0V15M30 0V15M35 0V15M40 0V15M45 0V15M50 0V15M55 0V15M60 0V15M65 0V15M70 0V15M75 0V15M80 0V15M85 0V15M90 0V15M95 0V15M100 0V15M105 0V15M110 0V15M115 0V15M120 0V15M125 0V15M130 0V15M135 0V15M140 0V15M145 0V15M150 0V15M155 0V15M160 0V15M165 0V15M170 0V15M175 0V15M180 0V15M0 0H180M0 5H180M0 10H180M0 15H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">12</span><span class="titel">Das Blut-Modell</span><svg class="icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h24l-2 34a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4z" fill="#fff" stroke="#1b2a41" stroke-width="2.5" stroke-linejoin="round"/><path d="M13 20h22l-1.2 20a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4z" fill="#f9c4bd"/><text x="24" y="36" text-anchor="middle" font-family="Verdana,Arial" font-weight="bold" font-size="9" fill="#b8392b">6 l</text></svg><span class="stern" title="Schwierigkeit">★★★</span></div>
+<p class="txt">Wir rechnen im Modell mit 6000 ml Blut und tun so, als wäre der ganze Alkohol im Blut. Das ist nur ein Rechenmodell.</p><div class="teile lang"><div><b>a)</b> Wie viel ml reiner Alkohol sind bei 0,8 ‰ im Blut?</div><div><b>b)</b> Im Blut sind 3,6 ml reiner Alkohol. Wie viel Promille sind das?</div></div>
+<svg class="karo " width="180.35mm" height="25.35mm" viewBox="-0.175 -0.175 180.35 25.35" aria-hidden="true"><path d="M0 0V25M5 0V25M10 0V25M15 0V25M20 0V25M25 0V25M30 0V25M35 0V25M40 0V25M45 0V25M50 0V25M55 0V25M60 0V25M65 0V25M70 0V25M75 0V25M80 0V25M85 0V25M90 0V25M95 0V25M100 0V25M105 0V25M110 0V25M115 0V25M120 0V25M125 0V25M130 0V25M135 0V25M140 0V25M145 0V25M150 0V25M155 0V25M160 0V25M165 0V25M170 0V25M175 0V25M180 0V25M0 0H180M0 5H180M0 10H180M0 15H180M0 20H180M0 25H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">13</span><span class="titel">Prozent oder Promille?</span><span class="stern" title="Schwierigkeit">★★★</span></div>
+<p class="txt">Was ist mehr? Rechne beide aus und vergleiche. Was fällt dir auf?</p><div class="teile"><div><b>a)</b> 5 % von 400 €</div><div><b>b)</b> 40 ‰ von 500 €</div></div>
+<svg class="karo " width="180.35mm" height="20.35mm" viewBox="-0.175 -0.175 180.35 20.35" aria-hidden="true"><path d="M0 0V20M5 0V20M10 0V20M15 0V20M20 0V20M25 0V20M30 0V20M35 0V20M40 0V20M45 0V20M50 0V20M55 0V20M60 0V20M65 0V20M70 0V20M75 0V20M80 0V20M85 0V20M90 0V20M95 0V20M100 0V20M105 0V20M110 0V20M115 0V20M120 0V20M125 0V20M130 0V20M135 0V20M140 0V20M145 0V20M150 0V20M155 0V20M160 0V20M165 0V20M170 0V20M175 0V20M180 0V20M0 0H180M0 5H180M0 10H180M0 15H180M0 20H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div><div class="t">
+<div class="th"><span class="nr">14</span><span class="titel">Fehler finden</span><span class="stern" title="Schwierigkeit">★★★</span></div>
+<p class="txt">Mia rechnet: „3 ‰ von 2000 € sind 2000 € · 0,03 = 60 €.“ Finde den Fehler und rechne richtig.</p>
+<svg class="karo " width="180.35mm" height="20.35mm" viewBox="-0.175 -0.175 180.35 20.35" aria-hidden="true"><path d="M0 0V20M5 0V20M10 0V20M15 0V20M20 0V20M25 0V20M30 0V20M35 0V20M40 0V20M45 0V20M50 0V20M55 0V20M60 0V20M65 0V20M70 0V20M75 0V20M80 0V20M85 0V20M90 0V20M95 0V20M100 0V20M105 0V20M110 0V20M115 0V20M120 0V20M125 0V20M130 0V20M135 0V20M140 0V20M145 0V20M150 0V20M155 0V20M160 0V20M165 0V20M170 0V20M175 0V20M180 0V20M0 0H180M0 5H180M0 10H180M0 15H180M0 20H180" fill="none" stroke="#8da3cc" stroke-width="0.35" stroke-linecap="square"/></svg>
+</div>
+</div></body></html>

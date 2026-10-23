@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verkehrskontrolle: Wer darf weiterfahren? (Mathe 8)</title>
+<meta name="description" content="Promille rechnen als Polizei an der Kontrollstelle. Mathe Klasse 8, iPad.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f7fd6'/%3E%3Ccircle cx='32' cy='28' r='13' fill='%23fff'/%3E%3Ccircle cx='32' cy='28' r='6' fill='%23f26b5b'/%3E%3Crect x='29' y='40' width='6' height='16' rx='3' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root{--ink:#1b2a41;--blau:#2f7fd6;--dunkel:#1d4f9a;--hell:#e3effc;--gelb:#f6c344;--korall:#f26b5b;--gruen:#2e9d62;--gruenhell:#e2f5ea;--rothell:#fdecea;--muted:#5a6a80;--creme:#fbf8f1;--orange:#f08a1c}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--ink);font-family:Verdana,Arial,Helvetica,sans-serif;font-size:18px;line-height:1.55}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+input{font:inherit}
+.top{position:sticky;top:0;z-index:20;background:var(--creme);border-bottom:2px solid var(--ink);padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.brand{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:19px;white-space:nowrap}
+.prog{flex:1 1 180px;min-width:140px}
+.proglab{font-size:13px;color:var(--muted);display:flex;justify-content:space-between}
+.progbar{height:12px;border:2px solid var(--ink);border-radius:999px;background:#fff;overflow:hidden}
+.progbar i{display:block;height:100%;background:var(--blau);width:0;transition:width .3s}
+.tb{display:flex;gap:8px;flex-wrap:wrap}
+.tb button{border:2px solid var(--ink);background:#fff;border-radius:12px;padding:6px 14px;min-height:44px;font-size:15px;font-weight:bold}
+main{max-width:1060px;margin:0 auto;padding:18px 16px 60px}
+.card{background:#fff;border:2px solid var(--ink);border-radius:22px;padding:22px;display:grid;grid-template-columns:minmax(0,270px) minmax(0,1fr);gap:22px;align-items:start}
+.ill{border:2px solid var(--ink);border-radius:18px;background:var(--hell);padding:10px;position:sticky;top:90px}
+.ill svg{display:block;width:100%;height:auto}
+.kick{display:inline-block;font-size:12px;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--dunkel);color:var(--dunkel);border-radius:999px;padding:2px 12px;background:#fff}
+.kick.zus{border-color:var(--orange);color:#a85a00;background:#fff6e8}
+h1{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:clamp(24px,4vw,34px);line-height:1.1;margin:12px 0 10px}
+h2{font-size:20px;margin:18px 0 6px}
+p{margin:8px 0}
+.text{font-size:19px}
+.frage{font-weight:bold;font-size:20px;margin:14px 0 8px}
+.hinweisrechnen{font-size:15px;color:var(--muted);margin:2px 0 10px}
+.in{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0}
+.in span{min-width:70px;font-weight:bold}
+.in input{width:190px;max-width:100%;min-height:54px;font-size:24px;padding:6px 14px;border:3px solid var(--ink);border-radius:14px;background:#fff;text-align:right}
+.in input.ok{border-color:var(--gruen);background:var(--gruenhell)}
+.in input.bad{border-color:var(--korall);background:var(--rothell)}
+.in b{font-size:22px;min-width:40px}
+.btn{border:3px solid var(--ink);background:var(--dunkel);color:#fff;border-radius:14px;padding:10px 22px;min-height:54px;font-size:19px;font-weight:bold}
+.btn:active{transform:translateY(2px)}
+.btn.zweit{background:#fff;color:var(--ink)}
+.btn.klein{min-height:46px;font-size:16px;padding:6px 16px}
+.btn.gelb{background:var(--gelb);color:var(--ink)}
+.btn:disabled{opacity:.45}
+.reihe{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0;align-items:center}
+.ent{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.ent button{border:3px solid var(--ink);background:#fff;border-radius:16px;min-height:72px;font-size:19px;font-weight:bold;padding:8px 12px}
+.ent button.gewaehlt{background:var(--gruenhell);border-color:var(--gruen)}
+.ent button.falsch{background:var(--rothell);border-color:var(--korall)}
+.ent button:disabled{opacity:.7}
+.mc{display:grid;gap:12px;margin:10px 0}
+.mc button{border:3px solid var(--ink);background:#fff;border-radius:16px;min-height:72px;font-size:18px;text-align:left;padding:10px 16px}
+.mc button.gewaehlt{background:var(--gruenhell);border-color:var(--gruen)}
+.mc button.falsch{background:var(--rothell);border-color:var(--korall)}
+.fb{border:3px solid var(--ink);border-radius:16px;padding:12px 16px;margin:12px 0;font-size:18px}
+.fb.ok{background:var(--gruenhell);border-color:var(--gruen)}
+.fb.bad{background:var(--rothell);border-color:var(--korall)}
+.fb.info{background:var(--hell);border-color:var(--blau)}
+.fb b.t{display:block}
+.modell{border:2.5px dashed var(--orange);border-radius:16px;background:#fff9ee;padding:10px 16px;margin:12px 0;font-size:16px}
+.kreuz{border-collapse:collapse;margin:10px 0;width:100%;max-width:460px}
+.kreuz th,.kreuz td{border:2.5px solid var(--ink);padding:8px 12px;text-align:center}
+.kreuz th{background:var(--hell);font-size:15px}
+.kreuz td{font-size:20px;font-weight:bold}
+.kreuz td small{display:block;font-weight:normal;font-size:12px;color:var(--muted)}
+.kreuz td.mal{background:#ffe6c2;border-color:var(--orange)}
+.kreuz td.teil{background:#d6e8fb;border-color:var(--blau)}
+.kreuz td.gesucht{background:#fff3b8;border-style:dashed}
+.legende{font-size:14px;color:var(--muted)}
+.weg{font-family:"Courier New",monospace;background:var(--hell);border-radius:12px;padding:10px 14px;margin:8px 0;font-size:17px;line-height:1.7}
+.regeln{display:grid;gap:10px;margin:10px 0}
+.regel{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;border:2.5px solid var(--ink);border-radius:16px;padding:10px 14px}
+.regel .w{font-family:"Arial Black",Arial,sans-serif;font-size:24px;color:var(--dunkel);text-align:center;white-space:nowrap}
+.overlay{position:fixed;inset:0;background:rgba(27,42,65,.55);z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:20px 14px;overflow:auto}
+.overlay[hidden]{display:none}
+.dialog{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:22px;max-width:640px;width:100%}
+.steps{list-style:none;padding:0;counter-reset:s;display:grid;gap:10px;margin:12px 0}
+.steps li{counter-increment:s;position:relative;padding:10px 12px 10px 66px;border:2.5px solid var(--ink);border-radius:16px;min-height:60px;display:flex;align-items:center}
+.steps li::before{content:counter(s);position:absolute;left:12px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:var(--blau);color:#fff;display:grid;place-items:center;font-weight:bold;font-size:21px}
+.ue{font-size:20px;font-weight:bold;text-align:center;border:3px dashed var(--korall);border-radius:16px;padding:12px;margin:14px 0;background:#fff7f5}
+.card.start{grid-template-columns:minmax(0,300px) minmax(0,1fr)}
+.namefeld{width:100%;max-width:340px;min-height:54px;font-size:22px;padding:6px 14px;border:3px solid var(--ink);border-radius:14px}
+.urkunde{display:block}
+.urkunde .card{display:block}
+.titelbox{text-align:center;border:3px solid var(--ink);border-radius:20px;background:#fff8e1;padding:16px;margin:12px 0}
+.titelbox .t{font-family:"Arial Black",Arial,sans-serif;font-size:30px;color:var(--dunkel)}
+table.prot{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+table.prot th,table.prot td{border:1.5px solid var(--ink);padding:6px 9px;text-align:left;vertical-align:top}
+table.prot th{background:var(--hell)}
+.schluss{text-align:center;font-weight:bold;font-size:20px;margin:16px 0}
+.klein{font-size:13px;color:var(--muted)}
+@media (max-width:900px){.card,.card.start{grid-template-columns:1fr}.ill{position:static;max-width:340px;margin:0 auto}.regel{grid-template-columns:100px 1fr}}
+@media (max-width:560px){.ent{grid-template-columns:1fr}.in input{width:150px}}
+@media (prefers-reduced-motion:reduce){.progbar i{transition:none}}
+@page{size:A4;margin:14mm}
+@media print{
+  body{background:#fff;font-size:12pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .top,.noprint,.overlay{display:none!important}
+  main{max-width:none;padding:0}
+  .card{border:none;padding:0}
+  table.prot{font-size:10.5pt}
+  .titelbox{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header class="top noprint">
+  <div class="brand">Verkehrskontrolle</div>
+  <div class="prog"><div class="proglab"><span id="proglab">Start</span><span id="pts">Punkte: 0</span></div><div class="progbar"><i id="bar"></i></div></div>
+  <div class="tb"><button data-act="regeln">Regelkarte</button><button data-act="anleitung">OneNote-Anleitung</button><button data-act="neu">Neustart</button></div>
+</header>
+<main id="main"></main>
+<div id="overlay" class="overlay noprint" hidden></div>
+<script>
+(function(){
+'use strict';
+var D = {"blutmenge_ml": 6000, "regeln": [{"wert": "0,0", "text": "Fahranfänger in der Probezeit und alle unter 21 Jahren: kein Alkohol am Steuer."}, {"wert": "0,3", "text": "Ab hier schon strafbar, wenn Ausfallerscheinungen dazukommen (zum Beispiel Schlangenlinien)."}, {"wert": "0,5", "text": "Ab hier Ordnungswidrigkeit: 500 Euro, 2 Punkte, 1 Monat Fahrverbot (beim ersten Mal)."}, {"wert": "1,1", "text": "Ab hier immer eine Straftat. Der Führerschein ist weg."}], "entscheidungen": [{"id": "weiter", "label": "Darf weiterfahren"}, {"id": "null", "label": "Verstoß gegen die 0,0-Regel"}, {"id": "ow", "label": "Ordnungswidrigkeit"}, {"id": "straf", "label": "Straftat"}], "fahrer": [{"id": "f1", "name": "Herr Schmid", "alter": 40, "text": "Herr Schmid, 40, fährt mit dem Auto nach Hause. Das Messgerät zeigt, dass in seinen 6 000 ml Blut 1,5 ml reiner Alkohol sind.", "typ": "promillesatz", "frage": "Wie viel Promille hat Herr Schmid?", "einheit": "‰", "grundwert": 6000, "promillewert": 1.5, "loesung": 0.25, "entscheidung": "weiter", "grund": "0,25 ‰ liegt unter 0,5 ‰. Er ist erwachsen und fährt normal. Erlaubt, aber sicherer ist: gar nichts trinken."}, {"id": "f2", "name": "Frau Weber", "alter": 42, "text": "Frau Weber, 42, ist auf dem Heimweg vom Geburtstag. In ihren 6 000 ml Blut sind 4,2 ml reiner Alkohol.", "typ": "promillesatz", "frage": "Wie viel Promille hat Frau Weber?", "einheit": "‰", "grundwert": 6000, "promillewert": 4.2, "loesung": 0.7, "entscheidung": "ow", "grund": "0,7 ‰ liegt zwischen 0,5 ‰ und 1,1 ‰. Das ist eine Ordnungswidrigkeit: 500 Euro, 2 Punkte, 1 Monat Fahrverbot."}, {"id": "f3", "name": "Tom", "alter": 19, "text": "Tom, 19, hat vor einem halben Jahr den Führerschein gemacht. Das Testgerät zeigt 0,4 ‰. Er hat 6 000 ml Blut.", "typ": "promillewert", "frage": "Wie viel ml reiner Alkohol sind in Toms Blut?", "einheit": "ml", "grundwert": 6000, "promillesatz_pm": 0.4, "loesung": 2.4, "entscheidung": "null", "grund": "Tom ist unter 21 und in der Probezeit. Für ihn gilt 0,0 ‰. Schon 0,4 ‰ sind ein Verstoß."}, {"id": "f4", "name": "Lena", "alter": 30, "text": "Lena, 30, wird kontrolliert. Das Testgerät zeigt genau 0,5 ‰. In ihrem Blut sind 2,25 ml reiner Alkohol.", "typ": "grundwert", "frage": "Wie viel ml Blut hat Lena?", "einheit": "ml", "promillewert": 2.25, "promillesatz_pm": 0.5, "loesung": 4500, "entscheidung": "ow", "grund": "Die Grenze gilt ab 0,5 ‰, also auch bei genau 0,5 ‰. Lena hat weniger Blut als die 6 000 ml im Modell, kleinere Menschen haben weniger Blut."}, {"id": "f5", "name": "Herr Kaya", "alter": 33, "text": "Herr Kaya, 33, fährt Schlangenlinien. Das Testgerät zeigt 0,3 ‰. Er hat 6 000 ml Blut.", "typ": "promillewert", "frage": "Wie viel ml reiner Alkohol sind in seinem Blut?", "einheit": "ml", "grundwert": 6000, "promillesatz_pm": 0.3, "loesung": 1.8, "entscheidung": "straf", "grund": "Schon ab 0,3 ‰ ist es strafbar, wenn Ausfallerscheinungen dazukommen. Schlangenlinien sind eine."}, {"id": "f6", "name": "Herr Brandl", "alter": 52, "text": "Herr Brandl, 52, hält an einer Kontrollstelle. Das Testgerät zeigt 1,2 ‰. Er hat 6 000 ml Blut.", "typ": "promillewert", "frage": "Wie viel ml reiner Alkohol sind in seinem Blut?", "einheit": "ml", "grundwert": 6000, "promillesatz_pm": 1.2, "loesung": 7.2, "entscheidung": "straf", "grund": "Ab 1,1 ‰ gilt man als fahruntüchtig, auch ohne Ausfallerscheinungen. Das ist eine Straftat."}], "anwendungen": [{"id": "a1", "titel": "Gebäudeversicherung", "text": "Ein Haus ist für 540 000 € gegen Feuer versichert. Die Versicherung verlangt jedes Jahr 0,6 ‰ der Versicherungssumme.", "typ": "promillewert", "frage": "Wie hoch ist die Prämie pro Jahr?", "einheit": "€", "grundwert": 540000, "promillesatz_pm": 0.6, "loesung": 324}, {"id": "a2", "titel": "Silberbesteck", "text": "Auf einem Silberlöffel mit 80 g steht der Stempel 925. Das heißt: 925 ‰ des Löffels sind reines Silber.", "typ": "promillewert", "frage": "Wie viel Gramm reines Silber stecken im Löffel?", "einheit": "g", "grundwert": 80, "promillesatz_pm": 925, "loesung": 74}, {"id": "a3", "titel": "Bahnstrecke", "text": "Eine Bahnstrecke steigt um 8 ‰. Das heißt: auf 1000 m Strecke steigt sie um 8 m. Die Strecke überwindet insgesamt 24 m Höhenunterschied.", "typ": "grundwert", "frage": "Wie lang ist die Strecke?", "einheit": "m", "promillewert": 24, "promillesatz_pm": 8, "loesung": 3000}], "aha": {"id": "aha", "titel": "Moment mal", "text": "1 Liter Bier (5 %) enthält 50 ml reinen Alkohol. Im Blut-Modell mit 6 000 ml Blut wären das 8,3 ‰. In Wirklichkeit passiert das nicht.", "frage": "Warum stimmt das Blut-Modell in der Wirklichkeit nicht?", "optionen": [{"id": "a", "text": "Der Alkohol verteilt sich im ganzen Körper, nicht nur im Blut. Außerdem baut die Leber ihn laufend ab.", "richtig": true}, {"id": "b", "text": "Bier hat in Wirklichkeit viel weniger als 5 %.", "richtig": false}, {"id": "c", "text": "Promille und Prozent sind dasselbe, deshalb kann man nicht rechnen.", "richtig": false}], "erklaerung": "Alkohol mischt sich mit dem Wasser im ganzen Körper, das sind etwa 40 kg bei einem 70 kg schweren Mann. Das Blut hat nur einen kleinen Anteil. Dazu kommen langsame Aufnahme und der Abbau in der Leber."}, "profi": {"id": "profi", "titel": "Profi-Kontrolle", "text": "So schätzt die Polizei den Wert nach Widmark: Alkohol in ml mal 0,8 ergibt Gramm. Promille gleich Gramm geteilt durch (Körpergewicht in kg mal r). Dabei ist r = 0,7 bei Männern und r = 0,6 bei Frauen. Beide trinken ein Glas Bier, 0,5 l mit 5 %.", "alkohol_ml": 25, "alkohol_g": 20, "personen": [{"name": "Mann", "kg": 70, "r": 0.7, "loesung": 0.41, "rechnung": "20 : (70 · 0,7) = 20 : 49 ≈ 0,41"}, {"name": "Frau", "kg": 60, "r": 0.6, "loesung": 0.56, "rechnung": "20 : (60 · 0,6) = 20 : 36 ≈ 0,56"}], "frage": "Wer hat nach demselben Bier den höheren Wert, und warum?", "hinweis": "Das ist nur eine Schätzung. Sie sagt nichts darüber, ob jemand noch fahren kann."}};
+var OB = {"geprueft": false, "hinweis": "Vorläufig, bis Fabi die genauen Namen der OneNote-Ebenen nennt. Nur Schritt-Texte hier ändern, die Bauskripte lesen diese Datei.", "titel": "So legst du dein Kontrollprotokoll in OneNote ab", "ueberschrift_vorschlag": "Promille: Verkehrskontrolle", "schritte": ["Tippe auf PDF sichern. Es öffnet sich die Druckvorschau.", "Ziehe die Seite in der Vorschau mit zwei Fingern auseinander. Jetzt ist es ein PDF.", "Tippe auf Teilen und wähle In Dateien sichern.", "Öffne OneNote und gehe in dein Notizbuch.", "Wähle den Reiter Übung und den passenden Abschnitt.", "Lege eine neue Seite an und schreibe oben eine Überschrift darüber.", "Tippe auf Einfügen, dann auf Datei, und such dein PDF aus.", "Wähle Ausdruck einfügen. Die Seite steht jetzt in deinem Heft."]};
+var KEY = 'promille-kontrolle-v1';
+var INK='#1b2a41', BL='#2f7fd6', DK='#1d4f9a', HE='#e3effc', GE='#f6c344', KO='#f26b5b';
+
+/* ---------- Stationen ---------- */
+var stations = [];
+D.fahrer.forEach(function(f,i){ stations.push({kind:'fahrer', d:f, nr:i+1}); });
+D.anwendungen.forEach(function(a){ stations.push({kind:'anw', d:a}); });
+stations.push({kind:'aha', d:D.aha});
+stations.push({kind:'profi', d:D.profi, bonus:true});
+var N = stations.length;
+
+/* ---------- Zustand ---------- */
+var ST = {name:'', res:[]};
+try { var raw = localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); if (p && typeof p.name==='string' && Array.isArray(p.res)) ST = p; } } catch(e) {}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch(e) {} }
+var I = ST.name ? Math.min(ST.res.length, N) : -1;
+var C = null;           /* Zustand der aktuellen Karte */
+var main = document.getElementById('main');
+var overlay = document.getElementById('overlay');
+
+function newC(){ return {fehler:0, hilfe:0, zahlOk:false, entOk:false, gezeigt:false, fertig:false, msg:null, eingabe:'', e1:'', e2:'', falsch:{}, pts:0, mcOk:false, pruefen:null}; }
+
+/* ---------- Hilfsfunktionen ---------- */
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function fmt(x){
+  var s = String(Math.round(x*1e6)/1e6), neg='';
+  if (s.charAt(0)==='-'){ neg='-'; s=s.slice(1); }
+  var p = s.split('.'), g = p[0];
+  if (g.length>4) g = g.replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+  return neg + g + (p[1] ? ','+p[1] : '');
+}
+function parseNum(s){
+  s = String(s).trim().replace(/[\s  ]/g,'');
+  if (!s) return NaN;
+  if (s.indexOf(',')>-1) s = s.replace(/\./g,'').replace(',','.');
+  else if (/^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g,'');
+  if (!/^-?\d+(\.\d+)?$/.test(s)) return NaN;
+  return parseFloat(s);
+}
+function nahe(v,l){ return Math.abs(v-l) <= 1e-6*Math.abs(l) + 1e-12; }
+function unit(a){ return a.typ==='promillesatz' ? 'ml' : a.einheit; }
+function entLabel(id){ for (var i=0;i<D.entscheidungen.length;i++) if (D.entscheidungen[i].id===id) return D.entscheidungen[i].label; return id; }
+function bezeichnung(s){
+  if (s.kind==='fahrer') return s.d.name;
+  if (s.kind==='anw') return s.d.titel;
+  if (s.kind==='aha') return 'Moment mal';
+  return 'Profi-Kontrolle';
+}
+function ergebnisText(s){
+  var a=s.d;
+  if (s.kind==='fahrer') return fmt(a.loesung)+' '+a.einheit+', '+entLabel(a.entscheidung);
+  if (s.kind==='anw') return fmt(a.loesung)+' '+a.einheit;
+  if (s.kind==='aha') return 'Antwort A';
+  return a.personen.map(function(p){return p.name+' '+fmt(p.loesung)+' ‰';}).join(', ');
+}
+
+/* ---------- Illustrationen (selbst gezeichnet) ---------- */
+var SV = function(inner,vb){ return '<svg viewBox="'+(vb||'0 0 240 180')+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">'+inner+'</svg>'; };
+function svgAuto(c, kopf){
+  return SV('<rect x="0" y="136" width="240" height="10" fill="#c9d9ee"/><rect x="0" y="146" width="240" height="34" fill="#dfe9f6"/>'
+   +'<path d="M28 112 L48 72 Q53 64 66 64 H152 Q164 64 171 72 L198 102 Q214 106 214 120 V128 H26 V120 Q26 114 28 112Z" fill="'+c+'" stroke="'+INK+'" stroke-width="3" stroke-linejoin="round"/>'
+   +'<path d="M62 72 H102 V102 H46 Z" fill="#fff" stroke="'+INK+'" stroke-width="3" stroke-linejoin="round"/>'
+   +'<path d="M110 72 H150 L176 102 H110Z" fill="#fff" stroke="'+INK+'" stroke-width="3" stroke-linejoin="round"/>'
+   +'<circle cx="82" cy="86" r="10" fill="'+(kopf||'#f6c9a0')+'" stroke="'+INK+'" stroke-width="2.5"/>'
+   +'<circle cx="74" cy="130" r="17" fill="'+INK+'"/><circle cx="74" cy="130" r="7" fill="#c9d9ee"/>'
+   +'<circle cx="174" cy="130" r="17" fill="'+INK+'"/><circle cx="174" cy="130" r="7" fill="#c9d9ee"/>'
+   +'<rect x="204" y="108" width="12" height="8" rx="3" fill="'+GE+'" stroke="'+INK+'" stroke-width="2"/>');
+}
+function svgPolizei(){
+  return SV('<rect x="0" y="150" width="240" height="30" fill="#dfe9f6"/>'
+   +'<rect x="84" y="86" width="72" height="72" rx="16" fill="'+BL+'" stroke="'+INK+'" stroke-width="3"/>'
+   +'<rect x="108" y="86" width="24" height="16" fill="#fff" stroke="'+INK+'" stroke-width="2.5"/>'
+   +'<circle cx="120" cy="64" r="26" fill="#f6c9a0" stroke="'+INK+'" stroke-width="3"/>'
+   +'<path d="M92 56 Q92 28 120 28 Q148 28 148 56 Z" fill="'+DK+'" stroke="'+INK+'" stroke-width="3"/>'
+   +'<rect x="88" y="52" width="64" height="8" rx="3" fill="'+DK+'" stroke="'+INK+'" stroke-width="3"/>'
+   +'<circle cx="110" cy="68" r="3" fill="'+INK+'"/><circle cx="130" cy="68" r="3" fill="'+INK+'"/>'
+   +'<path d="M110 80 Q120 88 130 80" fill="none" stroke="'+INK+'" stroke-width="3" stroke-linecap="round"/>'
+   +'<path d="M156 100 L196 72" stroke="'+INK+'" stroke-width="10" stroke-linecap="round"/>'
+   +'<path d="M156 100 L196 72" stroke="'+BL+'" stroke-width="5" stroke-linecap="round"/>'
+   +'<line x1="196" y1="72" x2="206" y2="40" stroke="'+INK+'" stroke-width="5" stroke-linecap="round"/>'
+   +'<circle cx="208" cy="30" r="20" fill="'+KO+'" stroke="'+INK+'" stroke-width="3"/><circle cx="208" cy="30" r="9" fill="#fff"/>');
+}
+function svgHaus(){
+  return SV('<rect x="0" y="146" width="240" height="34" fill="#dfe9f6"/>'
+   +'<rect x="58" y="86" width="124" height="62" fill="#fff" stroke="'+INK+'" stroke-width="3"/>'
+   +'<path d="M46 88 L120 30 L194 88 Z" fill="'+KO+'" stroke="'+INK+'" stroke-width="3" stroke-linejoin="round"/>'
+   +'<rect x="108" y="108" width="26" height="40" fill="'+GE+'" stroke="'+INK+'" stroke-width="3"/>'
+   +'<rect x="70" y="102" width="26" height="24" fill="'+HE+'" stroke="'+INK+'" stroke-width="3"/>'
+   +'<rect x="144" y="102" width="26" height="24" fill="'+HE+'" stroke="'+INK+'" stroke-width="3"/>'
+   +'<path d="M212 142 Q196 128 206 108 Q210 120 218 116 Q226 128 212 142Z" fill="'+GE+'" stroke="'+INK+'" stroke-width="2.5" stroke-linejoin="round"/>');
+}
+function svgLoeffel(){
+  return SV('<rect x="0" y="146" width="240" height="34" fill="#dfe9f6"/>'
+   +'<ellipse cx="62" cy="86" rx="40" ry="30" fill="#eef2f7" stroke="'+INK+'" stroke-width="3" transform="rotate(-20 62 86)"/>'
+   +'<path d="M90 100 L206 132" stroke="'+INK+'" stroke-width="22" stroke-linecap="round"/>'
+   +'<path d="M90 100 L206 132" stroke="#eef2f7" stroke-width="16" stroke-linecap="round"/>'
+   +'<rect x="140" y="104" width="52" height="24" rx="5" fill="'+GE+'" stroke="'+INK+'" stroke-width="2.5" transform="rotate(16 166 116)"/>'
+   +'<text x="166" y="122" font-family="Arial Black,Arial" font-size="17" text-anchor="middle" fill="'+INK+'" transform="rotate(16 166 116)">925</text>');
+}
+function svgBahn(){
+  return SV('<path d="M0 150 L0 140 Q80 130 150 80 Q190 52 240 50 L240 180 L0 180Z" fill="#cfe8d5" stroke="'+INK+'" stroke-width="3"/>'
+   +'<path d="M6 138 Q80 128 150 78 Q190 50 236 48" fill="none" stroke="'+INK+'" stroke-width="6" stroke-dasharray="3 7"/>'
+   +'<g transform="translate(112 86) rotate(-33)"><rect x="0" y="-22" width="68" height="26" rx="6" fill="'+KO+'" stroke="'+INK+'" stroke-width="3"/><rect x="8" y="-16" width="14" height="10" fill="#fff"/><rect x="28" y="-16" width="14" height="10" fill="#fff"/><rect x="48" y="-16" width="14" height="10" fill="#fff"/></g>'
+   +'<line x1="226" y1="52" x2="226" y2="150" stroke="'+INK+'" stroke-width="3"/><line x1="220" y1="52" x2="232" y2="52" stroke="'+INK+'" stroke-width="3"/><line x1="220" y1="150" x2="232" y2="150" stroke="'+INK+'" stroke-width="3"/>'
+   +'<text x="196" y="108" font-family="Arial Black,Arial" font-size="15" fill="'+INK+'">24 m</text>');
+}
+function svgFlasche(txt){
+  return SV('<rect x="0" y="154" width="240" height="26" fill="#dfe9f6"/>'
+   +'<path d="M104 20 H136 V58 Q136 70 152 86 Q164 100 164 120 V150 Q164 156 158 156 H82 Q76 156 76 150 V120 Q76 100 88 86 Q104 70 104 58Z" fill="#e8a53a" stroke="'+INK+'" stroke-width="3" stroke-linejoin="round"/>'
+   +'<rect x="102" y="12" width="36" height="12" rx="4" fill="'+GE+'" stroke="'+INK+'" stroke-width="3"/>'
+   +'<rect x="80" y="104" width="80" height="40" rx="6" fill="#fff" stroke="'+INK+'" stroke-width="3"/>'
+   +'<text x="120" y="130" font-family="Arial Black,Arial" font-size="'+(txt.length>7?15:19)+'" text-anchor="middle" fill="'+INK+'">'+txt+'</text>');
+}
+function svgTester(txt){
+  return SV('<rect x="0" y="154" width="240" height="26" fill="#dfe9f6"/>'
+   +'<rect x="70" y="26" width="100" height="126" rx="22" fill="#fff" stroke="'+INK+'" stroke-width="3"/>'
+   +'<rect x="84" y="44" width="72" height="40" rx="8" fill="'+HE+'" stroke="'+INK+'" stroke-width="3"/>'
+   +'<text x="120" y="72" font-family="Arial Black,Arial" font-size="22" text-anchor="middle" fill="'+DK+'">'+txt+'</text>'
+   +'<circle cx="120" cy="116" r="14" fill="'+KO+'" stroke="'+INK+'" stroke-width="3"/>'
+   +'<rect x="104" y="6" width="32" height="24" rx="8" fill="'+BL+'" stroke="'+INK+'" stroke-width="3"/>');
+}
+var FARBEN = {f1:'#2f7fd6', f2:'#f26b5b', f3:'#f6c344', f4:'#2e9d62', f5:'#8a63d2', f6:'#e38a2f'};
+function illu(s){
+  if (s.kind==='fahrer') return svgAuto(FARBEN[s.d.id]||BL);
+  if (s.kind==='anw') return s.d.id==='a1' ? svgHaus() : s.d.id==='a2' ? svgLoeffel() : svgBahn();
+  if (s.kind==='aha') return svgFlasche('5 % vol.');
+  return svgTester('0,41 ‰');
+}
+
+/* ---------- Kreuz-Formel und Rechenweg ---------- */
+function werte(a){
+  var G,P,p;
+  if (a.typ==='promillesatz'){ G=a.grundwert; P=a.promillewert; p=null; }
+  else if (a.typ==='promillewert'){ G=a.grundwert; p=a.promillesatz_pm; P=null; }
+  else { P=a.promillewert; p=a.promillesatz_pm; G=null; }
+  return {G:G,P:P,p:p};
+}
+function kreuz(a){
+  var w=werte(a), u=unit(a), t=a.typ;
+  function zelle(txt,cls,lab){ return '<td class="'+cls+'">'+txt+'<small>'+lab+'</small></td>'; }
+  function gesucht(lab){ return '<td class="gesucht">?<small>'+lab+'</small></td>'; }
+  var c1, cG, cp, cP;
+  if (t==='promillewert') { c1=zelle('1000 ‰','teil','das Ganze'); cG=zelle(fmt(w.G)+' '+u,'mal','Grundwert'); cp=zelle(fmt(w.p)+' ‰','mal','Promillesatz'); cP=gesucht('Promillewert'); }
+  else if (t==='promillesatz') { c1=zelle('1000 ‰','mal','das Ganze'); cG=zelle(fmt(w.G)+' '+u,'teil','Grundwert'); cp=gesucht('Promillesatz'); cP=zelle(fmt(w.P)+' '+u,'mal','Promillewert'); }
+  else { c1=zelle('1000 ‰','mal','das Ganze'); cG=gesucht('Grundwert'); cp=zelle(fmt(w.p)+' ‰','teil','Promillesatz'); cP=zelle(fmt(w.P)+' '+u,'mal','Promillewert'); }
+  return tab(c1,cG,cp,cP);
+}
+function tab(c1,c2,c3,c4){
+  return '<table class="kreuz"><tr><th>Promille</th><th>Einheit</th></tr><tr>'+c1+c2+'</tr><tr>'+c3+c4+'</tr></table>'
+   +'<div class="legende">Orange mal nehmen, blau teilen, gelb ist gesucht.</div>';
+}
+function weg(a){
+  var w=werte(a), u=unit(a), L=a.loesung;
+  if (a.typ==='promillesatz') return 'Promillesatz = Promillewert : Grundwert · 1000<br>= '+fmt(w.P)+' '+u+' : '+fmt(w.G)+' '+u+' · 1000<br>= '+fmt(L)+' ‰';
+  if (a.typ==='promillewert') return 'Promillewert = Grundwert · Promillesatz : 1000<br>= '+fmt(w.G)+' '+u+' · '+fmt(w.p)+' : 1000<br>= '+fmt(L)+' '+u;
+  return 'Grundwert = Promillewert · 1000 : Promillesatz<br>= '+fmt(w.P)+' '+u+' · 1000 : '+fmt(w.p)+'<br>= '+fmt(L)+' '+u;
+}
+function widmark(pe){
+  return 'Alkohol in Gramm: '+fmt(D.profi.alkohol_ml)+' ml · 0,8 = '+fmt(D.profi.alkohol_g)+' g<br>'
+   +'Promille = Gramm : (Körpergewicht · r)<br>'
+   +pe.name+': '+fmt(D.profi.alkohol_g)+' : ('+fmt(pe.kg)+' · '+fmt(pe.r)+')';
+}
+
+/* ---------- Rendern ---------- */
+function setProg(){
+  var n = I<0 ? 0 : Math.min(I,N);
+  document.getElementById('bar').style.width = (n/N*100)+'%';
+  document.getElementById('proglab').textContent = I<0 ? 'Start' : (I>=N ? 'Geschafft' : 'Station '+(I+1)+' von '+N);
+  var pts = ST.res.reduce(function(a,r){return a+r.pts;},0);
+  document.getElementById('pts').textContent = 'Punkte: '+pts;
+}
+function render(){
+  readInputs();
+  setProg();
+  if (I<0) main.innerHTML = renderStart();
+  else if (I>=N) main.innerHTML = renderEnde();
+  else main.innerHTML = renderStation();
+  var f = document.getElementById('zahl') || document.getElementById('zahlM');
+  if (f && C && !C.zahlOk && C.eingabe==='' && !C.msg) { /* kein Autofokus auf iPad, damit die Tastatur nicht stoert */ }
+}
+function neuRender(){ main.innerHTML=''; render(); window.scrollTo(0,0); }
+function readInputs(){
+  if (!C) return;
+  var e=document.getElementById('zahl'); if (e) C.eingabe=e.value;
+  var m=document.getElementById('zahlM'); if (m) C.e1=m.value;
+  var f=document.getElementById('zahlF'); if (f) C.e2=f.value;
+}
+function renderStart(){
+  return '<section class="card start"><div class="ill">'+svgPolizei()+'</div><div>'
+   +'<span class="kick">Mathe &middot; Klasse 8</span><h1>Verkehrskontrolle: Wer darf weiterfahren?</h1>'
+   +'<p class="text">Du bist heute Polizistin oder Polizist. An der Kontrollstelle zeigen die Testgeräte Promillewerte. Du rechnest nach und entscheidest: Darf die Person weiterfahren?</p>'
+   +'<div class="modell"><b>Blut-Modell:</b> Wir tun so, als wäre der ganze Alkohol im Blut. Das ist ein Rechenmodell. In Wirklichkeit ist es komplizierter, das klären wir am Ende.</div>'
+   +'<p class="hinweisrechnen">Rechne im Heft oder in OneNote. Hier tippst du nur das Ergebnis ein.</p>'
+   +'<p><b>Wie heißt du?</b> (Vorname und Initial vom Nachnamen, zum Beispiel Mia K.)</p>'
+   +'<p><input id="name" class="namefeld" type="text" autocomplete="off" autocapitalize="words" maxlength="40" placeholder="Mia K." value="'+esc(ST.name||'')+'"></p>'
+   +'<div id="nm" class="klein" role="alert"></div>'
+   +'<div class="reihe"><button class="btn" data-act="start">Kontrolle beginnen</button><button class="btn zweit" data-act="regeln">Regelkarte ansehen</button></div>'
+   +'</div></section>';
+}
+function stationKopf(s){
+  var kick = s.kind==='fahrer' ? 'Kontrolle '+s.nr+' von '+D.fahrer.length
+    : s.kind==='anw' ? 'Promille steckt überall'
+    : s.kind==='aha' ? 'Moment mal' : 'Zusatz &middot; Bonuspunkte';
+  var titel = s.kind==='fahrer' ? s.d.name+' ('+s.d.alter+')' : s.kind==='anw' ? s.d.titel : s.kind==='aha' ? 'Stimmt das Blut-Modell?' : 'Profi-Kontrolle';
+  return '<span class="kick'+(s.bonus?' zus':'')+'">'+kick+'</span><h1>'+esc(titel)+'</h1>';
+}
+function msgHtml(){
+  if (!C.msg) return '';
+  return '<div class="fb '+C.msg.t+'" role="status" aria-live="polite">'+C.msg.h+'</div>';
+}
+function hilfeHtml(a){
+  var h='';
+  if (C.hilfe>=1) h+='<h2>Hinweis 1: Kreuz-Formel</h2>'+kreuz(a);
+  if (C.hilfe>=2) h+='<h2>Hinweis 2: Rechenweg</h2><div class="weg">'+weg(a)+'</div>';
+  return h;
+}
+function buttonsPruef(act, a){
+  var b='';
+  if (!C.fertig){
+    b+='<button class="btn zweit klein" data-act="hinweis"'+(C.hilfe>=2?' disabled':'')+'>'+(C.hilfe===0?'Hinweis':C.hilfe===1?'Noch ein Hinweis':'Keine Hinweise mehr')+'</button>';
+    b+='<button class="btn zweit klein'+(C.fehler>=3?' gelb':'')+'" data-act="loesung">Lösung zeigen</button>';
+  }
+  return b;
+}
+function renderStation(){
+  var s = stations[I]; if (!C) C = newC();
+  var a = s.d, h = '<section class="card"><div class="ill">'+illu(s)+'</div><div>'+stationKopf(s);
+  if (s.kind==='fahrer' || s.kind==='anw') h += renderRechnen(s);
+  else if (s.kind==='aha') h += renderAha(s);
+  else h += renderProfi(s);
+  h += '</div></section>';
+  return h;
+}
+function renderRechnen(s){
+  var a=s.d, h='<p class="text">'+esc(a.text)+'</p>';
+  h+='<p class="frage">'+esc(a.frage)+'</p><p class="hinweisrechnen">Rechne im Heft oder in OneNote. Hier tippst du nur das Ergebnis ein.</p>';
+  var st = C.zahlOk ? 'ok' : (C.msg && C.msg.t==='bad' && !C.entStep ? 'bad' : '');
+  h+='<label class="in"><span>Ergebnis</span><input id="zahl" type="text" inputmode="decimal" autocomplete="off" value="'+esc(C.zahlOk ? fmt(a.loesung) : C.eingabe)+'" class="'+st+'"'+(C.zahlOk?' readonly':'')+'><b>'+esc(a.einheit)+'</b></label>';
+  if (!C.zahlOk) h+='<div class="reihe"><button class="btn" data-act="pruefen">Prüfen</button>'+buttonsPruef()+'</div>';
+  if (C.zahlOk && s.kind==='fahrer'){
+    h+='<p class="frage">Und jetzt die Entscheidung:</p><div class="ent">';
+    D.entscheidungen.forEach(function(e){
+      var cls = C.entOk && e.id===a.entscheidung ? 'gewaehlt' : (C.falsch[e.id] ? 'falsch' : '');
+      h+='<button class="'+cls+'" data-act="ent" data-id="'+e.id+'"'+(C.fertig?' disabled':'')+'>'+esc(e.label)+'</button>';
+    });
+    h+='</div>';
+    if (!C.fertig) h+='<div class="reihe"><button class="btn zweit klein" data-act="regeln">Regelkarte</button>'+buttonsPruef()+'</div>';
+  }
+  h+=msgHtml();
+  h+=hilfeHtml(a);
+  if (C.fertig) h+='<div class="reihe"><button class="btn" data-act="weiter">'+(I>=N-1?'Zum Ergebnis':'Weiter')+'</button></div>';
+  return h;
+}
+function renderAha(s){
+  var a=s.d, h='<p class="text">'+esc(a.text)+'</p><p class="frage">'+esc(a.frage)+'</p><div class="mc">';
+  a.optionen.forEach(function(o){
+    var cls = C.mcOk && o.richtig ? 'gewaehlt' : (C.falsch[o.id] ? 'falsch' : '');
+    h+='<button class="'+cls+'" data-act="mc" data-id="'+o.id+'"'+(C.fertig?' disabled':'')+'><b>'+o.id.toUpperCase()+'</b> &nbsp;'+esc(o.text)+'</button>';
+  });
+  h+='</div>'+msgHtml();
+  if (!C.fertig) h+='<div class="reihe"><button class="btn zweit klein" data-act="loesung">Lösung zeigen</button></div>';
+  if (C.fertig) h+='<div class="fb info"><b class="t">Erklärung</b>'+esc(a.erklaerung)+'</div><div class="reihe"><button class="btn" data-act="weiter">Weiter</button></div>';
+  return h;
+}
+function renderProfi(s){
+  var a=s.d, h='<p class="text">'+esc(a.text)+'</p>';
+  h+='<div class="modell">Schätzwert, kein Test für Fahrtüchtigkeit. Das ist eine Rechnung auf dem Papier und sagt nichts darüber, ob jemand noch fahren kann.</div>';
+  var m=a.personen[0], f=a.personen[1];
+  function fld(id,pe,val,st){ return '<label class="in"><span>'+esc(pe.name)+'</span><input id="'+id+'" type="text" inputmode="decimal" autocomplete="off" value="'+esc(val)+'" class="'+st+'"'+(C.zahlOk?' readonly':'')+'><b>‰</b></label><div class="klein" style="margin:-4px 0 6px 0">'+pe.kg+' kg, r = '+fmt(pe.r)+'</div>'; }
+  var sm = C.zahlOk ? 'ok' : (C.pruefen ? (C.pruefen.m?'ok':'bad') : ''), sf = C.zahlOk ? 'ok' : (C.pruefen ? (C.pruefen.f?'ok':'bad') : '');
+  h+='<p class="frage">Wie viel Promille schätzt die Rechnung? Auf 2 Stellen runden.</p><p class="hinweisrechnen">Rechne im Heft oder in OneNote.</p>';
+  h+=fld('zahlM',m,C.zahlOk?fmt(m.loesung):C.e1,sm)+fld('zahlF',f,C.zahlOk?fmt(f.loesung):C.e2,sf);
+  if (!C.zahlOk){
+    h+='<div class="reihe"><button class="btn" data-act="pruefenP">Prüfen</button>'
+      +'<button class="btn zweit klein" data-act="hinweis"'+(C.hilfe>=2?' disabled':'')+'>'+(C.hilfe===0?'Hinweis':C.hilfe===1?'Noch ein Hinweis':'Keine Hinweise mehr')+'</button>'
+      +'<button class="btn zweit klein" data-act="loesung">Lösung zeigen</button>'
+      +'<button class="btn zweit klein" data-act="skip">Zusatz überspringen</button></div>';
+  }
+  h+=msgHtml();
+  if (C.hilfe>=1) h+='<h2>Hinweis 1: Rechenkette</h2><div class="weg">'+widmark(m)+'<br><br>'+widmark(f)+'</div>';
+  if (C.hilfe>=2) h+='<h2>Hinweis 2: Rechenweg</h2><div class="weg">'+esc(m.rechnung)+' ‰<br>'+esc(f.rechnung)+' ‰</div>';
+  if (C.zahlOk){
+    h+='<p class="frage">'+esc(a.frage)+'</p><div class="mc">';
+    var opts=[{id:'a',t:'Der Mann, weil er schwerer ist.',ok:false},{id:'b',t:'Die Frau. Sie ist hier leichter und r ist kleiner, weil weniger Körperwasser da ist.',ok:true},{id:'c',t:'Beide gleich, es ist ja dasselbe Bier.',ok:false}];
+    opts.forEach(function(o){
+      var cls = C.mcOk && o.ok ? 'gewaehlt' : (C.falsch[o.id] ? 'falsch' : '');
+      h+='<button class="'+cls+'" data-act="mcP" data-id="'+o.id+'" data-ok="'+(o.ok?1:0)+'"'+(C.fertig?' disabled':'')+'><b>'+o.id.toUpperCase()+'</b> &nbsp;'+esc(o.t)+'</button>';
+    });
+    h+='</div>';
+    if (C.mcOk) h+='<div class="fb info"><b class="t">Wichtig</b>'+esc(a.hinweis)+'</div>';
+  }
+  if (C.fertig) h+='<div class="reihe"><button class="btn" data-act="weiter">Zum Ergebnis</button></div>';
+  return h;
+}
+function titelFuer(p){
+  if (p>=18) return 'Kontrollchef';
+  if (p>=12) return 'Kontrollprofi';
+  if (p>=6) return 'Kontrolleur';
+  return 'Kontroll-Azubi';
+}
+function renderEnde(){
+  var pts=0, bonus=0, maxKern=0;
+  stations.forEach(function(s,i){ var r=ST.res[i]; if(!r) return; if (s.bonus) bonus+=r.pts; else pts+=r.pts; });
+  stations.forEach(function(s){ if(!s.bonus) maxKern+=2; });
+  var ges=pts+bonus;
+  var rows='';
+  stations.forEach(function(s,i){
+    var r=ST.res[i]||{pts:0,erster:false,hilfe:false,gezeigt:false,skipped:true};
+    var erg = r.skipped ? 'übersprungen' : (r.gezeigt ? 'Lösung angesehen: ' : '')+ergebnisText(s);
+    rows+='<tr><td>'+(i+1)+'</td><td>'+esc(bezeichnung(s))+(s.bonus?' (Zusatz)':'')+'</td><td>'+esc(erg)+'</td><td>'+(r.skipped?'-':(r.erster?'ja':'nein'))+'</td><td>'+(r.skipped?'-':(r.hilfe?'ja':'nein'))+'</td><td>'+r.pts+'</td></tr>';
+  });
+  var d=new Date().toLocaleDateString('de-DE');
+  var h='<section class="urkunde"><div class="card protokoll"><div>'
+   +'<span class="kick">Kontrollprotokoll &middot; Mathe Klasse 8</span><h1>Führerschein-Urkunde</h1>'
+   +'<p class="text">für <b>'+esc(ST.name)+'</b>, ausgestellt am '+d+'</p>'
+   +'<div class="titelbox"><div class="klein">Du bist</div><div class="t">'+titelFuer(ges)+'</div><div>'+pts+' von '+maxKern+' Punkten'+(bonus?' und '+bonus+(bonus===1?' Bonuspunkt':' Bonuspunkte'):'')+'</div></div>'
+   +'<table class="prot"><tr><th>Nr.</th><th>Station</th><th>Ergebnis</th><th>Erster Versuch</th><th>Hilfe</th><th>Punkte</th></tr>'+rows+'</table>'
+   +'<p class="klein">Das Blut-Modell ist ein Rechenmodell. Schätzwerte sind kein Test für Fahrtüchtigkeit.</p>'
+   +'<p class="schluss">Nicht trinken und fahren.</p>'
+   +'</div></div>'
+   +'<div class="card noprint" style="margin-top:18px;display:block"><h2 style="margin-top:0">Jetzt ablegen: ein PDF aus deinem Protokoll</h2>'
+   +'<div class="reihe"><button class="btn" data-act="pdf">PDF sichern</button><button class="btn zweit" data-act="neu">Noch einmal spielen</button></div>'
+   +anleitungHtml()+'</div></section>';
+  return h;
+}
+function anleitungHtml(){
+  var h='<h2>'+esc(OB.titel)+'</h2><ol class="steps">';
+  OB.schritte.forEach(function(t){ h+='<li>'+esc(t)+'</li>'; });
+  h+='</ol><div class="ue">Schreibe als Überschrift: '+esc(OB.ueberschrift_vorschlag)+'</div>';
+  return h;
+}
+
+/* ---------- Overlays ---------- */
+function showOverlay(html){ overlay.innerHTML='<div class="dialog" role="dialog" aria-modal="true">'+html+'</div>'; overlay.hidden=false; }
+function closeOverlay(){ overlay.hidden=true; overlay.innerHTML=''; }
+function regelnHtml(){
+  var h='<h1 style="margin-top:0">Regelkarte</h1><div class="regeln">';
+  D.regeln.forEach(function(r){ h+='<div class="regel"><div class="w">'+esc(r.wert)+' ‰</div><div>'+esc(r.text)+'</div></div>'; });
+  h+='</div><p class="klein">Stand Oktober 2026. Quellen: § 24a StVG, Kraftfahrt-Bundesamt, ADAC.</p><div class="reihe"><button class="btn" data-act="zu">Schließen</button></div>';
+  return h;
+}
+
+/* ---------- Aktionen ---------- */
+function fertig(pts, extra){
+  C.fertig=true;
+  var s=stations[I];
+  var r = {id:s.d.id, pts:pts, erster:(C.fehler===0&&C.hilfe===0&&!C.gezeigt), hilfe:C.hilfe>0, gezeigt:C.gezeigt, skipped:!!(extra&&extra.skipped)};
+  ST.res[I]=r; save();
+}
+function punkte(){ return C.gezeigt ? 0 : ((C.fehler===0 && C.hilfe===0) ? 2 : 1); }
+function falschMsg(v, a){
+  C.fehler++;
+  var t = 'Noch nicht ganz. Rechne im Heft noch einmal nach.';
+  if (isFinite(v) && a){
+    if (nahe(v, a.loesung/10) && a.typ==='promillesatz') t='Das wäre die Prozentzahl. Gesucht ist der Wert in Promille. Das Komma wandert um 3 Stellen, nicht um 2.';
+    else if (nahe(v, a.loesung/1000) && a.typ==='promillesatz') t='Das ist die Dezimalzahl. Gefragt ist der Promillesatz in ‰.';
+    else if (nahe(v, a.loesung*10) || nahe(v, a.loesung/10)) t='Schau noch einmal auf das Komma. Bei Promille wird durch 1000 geteilt, nicht durch 100.';
+    else if (C.fehler>=2) t='Fast. Nimm den Hinweis, er zeigt dir die Kreuz-Formel.';
+  }
+  if (C.fehler>=3) t+=' Du darfst dir jetzt die Lösung ansehen. Dann gibt es für diese Karte keine Punkte.';
+  C.msg={t:'bad',h:'<b class="t">'+esc(t)+'</b>'};
+}
+var A = {
+  start:function(){
+    var v=(document.getElementById('name').value||'').trim();
+    if (v.length<2){ document.getElementById('nm').textContent='Bitte trage deinen Namen ein.'; return; }
+    ST.name=v; ST.res=[]; save(); I=0; C=newC(); neuRender();
+  },
+  regeln:function(){ showOverlay(regelnHtml()); },
+  anleitung:function(){ showOverlay('<h1 style="margin-top:0">Ablegen in OneNote</h1>'+anleitungHtml()+'<div class="reihe"><button class="btn" data-act="zu">Schließen</button></div>'); },
+  neu:function(){ showOverlay('<h1 style="margin-top:0">Neu starten?</h1><p class="text">Dein Fortschritt und dein Protokoll werden gelöscht. Das lässt sich nicht rückgängig machen.</p><div class="reihe"><button class="btn" data-act="neuJa">Ja, neu starten</button><button class="btn zweit" data-act="zu">Nein, weiterspielen</button></div>'); },
+  neuJa:function(){ ST={name:'',res:[]}; save(); I=-1; C=null; closeOverlay(); neuRender(); },
+  zu:closeOverlay,
+  pruefen:function(){
+    var s=stations[I], a=s.d, v=parseNum(document.getElementById('zahl').value);
+    C.eingabe=document.getElementById('zahl').value;
+    if (isNaN(v)){ C.msg={t:'info',h:'<b class="t">Bitte tippe eine Zahl ein, zum Beispiel 0,25.</b>'}; render(); return; }
+    if (nahe(v,a.loesung)){
+      C.zahlOk=true; C.eingabe='';
+      if (s.kind==='anw'){ C.msg={t:'ok',h:'<b class="t">Richtig!</b>'+esc(fmt(a.loesung)+' '+a.einheit)+' ist das Ergebnis.'}; fertig(punkte()); }
+      else C.msg={t:'ok',h:'<b class="t">Richtig: '+esc(fmt(a.loesung))+' '+esc(a.einheit)+'.</b>Jetzt zur Entscheidung.'};
+    } else falschMsg(v,a);
+    render();
+  },
+  ent:function(el){
+    var s=stations[I], a=s.d, id=el.getAttribute('data-id');
+    if (id===a.entscheidung){
+      C.entOk=true;
+      C.msg={t:'ok',h:'<b class="t">Richtig: '+esc(entLabel(id))+'.</b>'+esc(a.grund)};
+      fertig(punkte());
+    } else {
+      C.falsch[id]=true; C.fehler++;
+      var t='Das passt nicht. Lies die Regelkarte noch einmal und achte auf Alter und Probezeit.';
+      if (C.fehler>=3) t+=' Du darfst dir jetzt die Lösung ansehen. Dann gibt es für diese Karte keine Punkte.';
+      C.msg={t:'bad',h:'<b class="t">'+esc(t)+'</b>'};
+    }
+    render();
+  },
+  hinweis:function(){ if (C.hilfe<2) C.hilfe++; render(); },
+  loesung:function(){
+    var s=stations[I], a=s.d;
+    C.gezeigt=true; C.zahlOk=true; C.entOk=true; C.mcOk=true; C.hilfe=2;
+    if (s.kind==='fahrer') C.msg={t:'info',h:'<b class="t">Lösung: '+esc(fmt(a.loesung))+' '+esc(a.einheit)+', '+esc(entLabel(a.entscheidung))+'.</b>'+esc(a.grund)};
+    else if (s.kind==='anw') C.msg={t:'info',h:'<b class="t">Lösung: '+esc(fmt(a.loesung))+' '+esc(a.einheit)+'.</b>'};
+    else if (s.kind==='aha') C.msg={t:'info',h:'<b class="t">Lösung: Antwort A.</b>'};
+    else C.msg={t:'info',h:'<b class="t">Lösung: '+a.personen.map(function(p){return esc(p.name)+' '+esc(fmt(p.loesung))+' ‰';}).join(', ')+'. Die Frau hat den höheren Wert.</b>'};
+    fertig(0); render();
+  },
+  mc:function(el){
+    var a=stations[I].d, id=el.getAttribute('data-id'), o=null;
+    a.optionen.forEach(function(x){ if (x.id===id) o=x; });
+    if (o.richtig){ C.mcOk=true; C.msg={t:'ok',h:'<b class="t">Richtig!</b>'}; fertig(punkte()); }
+    else { C.falsch[id]=true; C.fehler++; C.msg={t:'bad',h:'<b class="t">Noch nicht. Überlege: Wo im Körper bleibt der Alkohol, und was macht die Leber?</b>'}; }
+    render();
+  },
+  pruefenP:function(){
+    var a=stations[I].d, m=parseNum(document.getElementById('zahlM').value), f=parseNum(document.getElementById('zahlF').value);
+    C.e1=document.getElementById('zahlM').value; C.e2=document.getElementById('zahlF').value;
+    if (isNaN(m)||isNaN(f)){ C.msg={t:'info',h:'<b class="t">Bitte fülle beide Felder mit einer Zahl aus.</b>'}; render(); return; }
+    var okm=Math.abs(m-a.personen[0].loesung)<=0.0051, okf=Math.abs(f-a.personen[1].loesung)<=0.0051;
+    C.pruefen={m:okm,f:okf};
+    if (okm&&okf){ C.zahlOk=true; C.pruefen=null; C.msg={t:'ok',h:'<b class="t">Beide Werte stimmen.</b>Jetzt die Vergleichsfrage.'}; }
+    else { C.fehler++; C.msg={t:'bad',h:'<b class="t">'+(okm||okf?'Einer der beiden Werte stimmt schon.':'Noch nicht ganz.')+' Rechne im Heft noch einmal: erst Gramm Alkohol, dann durch (Gewicht mal r).</b>'}; }
+    render();
+  },
+  mcP:function(el){
+    var id=el.getAttribute('data-id'), ok=el.getAttribute('data-ok')==='1';
+    if (ok){ C.mcOk=true; C.msg={t:'ok',h:'<b class="t">Richtig!</b>'}; fertig(punkte()); }
+    else { C.falsch[id]=true; C.fehler++; C.msg={t:'bad',h:'<b class="t">Noch nicht. Vergleiche Gewicht und r der beiden.</b>'}; }
+    render();
+  },
+  skip:function(){ C.gezeigt=false; fertig(0,{skipped:true}); I++; C=newC(); neuRender(); },
+  weiter:function(){ I++; C=newC(); neuRender(); },
+  pdf:function(){ window.print(); }
+};
+document.addEventListener('click',function(e){
+  var el=e.target.closest ? e.target.closest('[data-act]') : null;
+  if (!el) { if (e.target===overlay) closeOverlay(); return; }
+  var f=A[el.getAttribute('data-act')]; if (f) f(el);
+});
+document.addEventListener('keydown',function(e){
+  if (e.key==='Enter'){
+    var t=e.target;
+    if (t && t.id==='name') A.start();
+    else if (t && t.id==='zahl') A.pruefen();
+    else if (t && (t.id==='zahlM'||t.id==='zahlF')) A.pruefenP();
+  }
+  if (e.key==='Escape') closeOverlay();
+});
+if (I>=0 && I<N) C=newC();
+render();
+})();
+</script>
+</body>
+</html>
